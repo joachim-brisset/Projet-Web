@@ -1,0 +1,72 @@
+main {
+    background: whitesmoke ;
+    position: absolute;
+    top: var(--header-height); bottom: 0;
+    left: 0; right: 0;
+    display: flex;
+}
+
+main form {
+    width: 400px;
+    margin: auto;
+    padding: 30px;
+    border: 1px solid #494545;
+    background: #6f439e;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    border-radius: 10px;
+}
+
+main form h1 {
+    width: 100%;
+    margin: 0 auto;
+    padding-bottom: 10px;
+    text-align: center;
+    font-family: 'Racing Sans One', Arial, Helvetica, sans-serif;
+}
+
+main input[type=text],
+main input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+
+main input[type=submit] {
+    background-color: yellow;
+    color: black;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 10px;
+    font-family: Poppins, Arial;
+}
+
+main input[type=submit]:hover {
+    background-color: white;
+    color: black;
+    border-radius: 10px;
+    /* border: 1px solid black; */
+    font-family: Poppins, Arial;
+}
+
+main #message {
+    position: absolute;
+    top: 50px;
+    border-radius: 1em;
+    max-width: 500px;
+    width: 80%;
+    background: #cf3131;
+    border: solid 3px #960a0a;
+    padding: 0.25em;
+    text-align: center;
+
+    left: 50%;
+    transform: translate(-50%, 100%);
+
+}

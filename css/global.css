@@ -1,0 +1,24 @@
+:root {
+    --background-gradient: linear-gradient(104.23deg, #471686 -0.35%, #701466 34.67%, #7A0A6F 68.12%, #99048A 100%);
+    --purple-1: #542583;
+    --shadow-color: #1a1c1f;
+    --background-size: 100vw 100vh;
+}
+html {
+    height: -moz-fit-content;
+    height: fit-content;
+}
+
+body {
+    background: var(--background-gradient) no-repeat;
+    background-size: cover;
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+}
+
+header,footer {z-index: 3}
+#responsive-header { z-index: 2;}
+main {z-index: 1}

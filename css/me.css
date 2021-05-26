@@ -1,0 +1,65 @@
+/* {
+    font-family: 'Racing Sans One', Arial, Helvetica, sans-serif;
+}*/
+
+main {
+    margin-top: calc(var(--header-height) + 20px);
+}
+
+.change_button {
+    background-color: darkorange;
+    border: none;
+    color: white;
+    padding: 5px 5px;
+    border-radius: 1em;
+}
+
+.change_button:hover {
+    text-decoration: underline;
+}
+
+#change_password, #change_email {
+    display: flex;
+    justify-content: space-between;
+}
+
+#data {
+    margin-left: 3%;
+}
+
+#data, #calendar {
+    float: left;
+}
+
+#presentation {
+    display: flex;
+    justify-content: space-between;
+}
+
+#calendar {
+    margin-left: 10%;
+    margin-right: 12%;
+    margin-bottom: auto;
+}
+
+.section_title {
+    text-align: center; 
+}
+
+#futur_events {
+    padding-left: 5%;
+}
+
+#message {
+    position: absolute;
+    border-radius: 1em;
+    max-width: 500px;
+    width: 80%;
+    background: #cf3131;
+    border: solid 3px #960a0a;
+    padding: 0.25em;
+    text-align: center;
+
+    left: 50%;
+    transform: translate(-50%, 100%);
+}

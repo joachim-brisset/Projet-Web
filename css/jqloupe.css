@@ -1,0 +1,14 @@
+.jqloupe-loupe{
+	position:absolute;
+	top:0;
+	right:0;
+	background-color:#fff;
+	background-repeat:no-repeat;
+	cursor: none;
+}
+.jqloupe-overlayZoom{
+	position:absolute;
+	top:0;
+	left:0;
+	cursor: none;
+}

@@ -1,6 +1,20 @@
 RewriteEngine on
+ErrorDocument 404 /views/404.php
 
-RewriteCond %{REQUEST_FILENAME} -f
-RewriteRule .* - [L]
+RewriteRule ^$ /home [R,L]                # rewrite / --> /home
+RewriteRule ^home$ /controllers/home [L]
+RewriteRule ^sign-in$ /controllers/sign-in [L]
+RewriteRule ^sign-up$ /controllers/sign-up [L]
+RewriteRule ^me$ /controllers/me [L]
+RewriteRule ^change_password$ /controllers/change_password [L]
+RewriteRule ^change_email$ /controllers/change_email [L]
+RewriteRule ^event$ /controllers/event [L]
+RewriteRule ^store$ /controllers/store [L]
+RewriteRule ^product$ /controllers/product/ [L,QSA]
 
-RewriteRule .* rooter [L]
+
+RewriteRule ^api/(.+)$ /controllers/api?action=$1 [L,QSA]
+
+
+RewriteRule ^headertest$ /controllers/headertest [L]
+

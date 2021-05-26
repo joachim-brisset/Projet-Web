@@ -1,0 +1,139 @@
+body{
+    background-color: #542583;
+}
+
+
+main {
+    margin-top: var(--header-height);
+}
+
+#mid-page {
+    /* background-color: rgb(31, 30, 36); */
+    background: linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, rgba(31, 30, 36, 1) 100%);
+    height: 100em;
+}
+
+.product-name,
+.product-price {
+    color: #ffffff;
+}
+
+.section-title {
+    text-decoration: none;
+    color: white;
+    font-family: 'Racing Sans One', cursive;
+    font-weight: normal;
+   text-align: center;
+   font-size: 70px;
+   margin-bottom: 70px;
+}
+
+
+/* .list-product{
+    display: flex;
+    justify-content: space-around;
+    min-height: 300px;
+    margin-top: 8%;
+
+} */
+.title-mid{
+    font-family: 'Racing Sans One';
+    color: white;
+    font-size: 50px;
+    text-align: right;
+}
+.title-mid a{
+    color: black;
+    text-decoration: none;
+    background-color: white;
+    
+    padding: 14px 30px;
+    
+    border: none;
+    
+    width: 100%;
+    border-radius: 50px;
+}
+
+.title-mid a:hover{
+    background-color: #9080CD;
+    color: yellow;
+}
+.title-mid p{
+margin-bottom: 50px;
+}
+.first-row {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: url(../img/Component2.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+
+    /* justify-content: space-around; */
+    /* min-height: 300px; */
+    /* width: 20em; */
+    /* margin-top: 5%; */
+}
+
+.second-row {
+    display: flex;
+    justify-content: space-around;
+    min-height: 300px;
+    margin-top: 10%;
+    margin-top: 0;
+    padding-top: 70px;
+    padding-bottom: 150px;
+}
+
+.product {
+    position: relative;
+    width: 500px;
+    height: 500px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 40px;
+}
+
+.product:hover {
+    color: rgba(255, 255, 255, 0.596);
+}
+
+.tshirt-orchide {
+    background-image: url(../img/qdqzdqdqzdqz.png);
+}
+
+
+
+.hoodie {
+    background-image: url(../img/balle-lakers.jpeg);
+}
+
+.secret {
+    background-image: url(../img/panier_chinatown.jpg);
+}
+
+.product-details {
+    width: auto;
+    position: absolute;
+    bottom: -20%;
+    width: 100%;
+    text-align: center;
+    font-family: 'AkiraExpanded', 'Arial';
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.product-name {
+    font-size: 110%;
+}
+
+main{
+    display: flex;
+    flex-flow: column nowrap;
+    /* height: 100vh; */
+    background: #99048A url(/img/background.svg);
+    background-size: cover;
+}
