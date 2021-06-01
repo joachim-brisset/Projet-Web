@@ -1,8 +1,9 @@
 main {
     background: whitesmoke ;
     position: absolute;
-    top: var(--header-height); bottom: 0;
+    top: 0; bottom: 0;
     left: 0; right: 0;
+    margin-top: var(--header-height);
     display: flex;
 }
 
@@ -57,7 +58,7 @@ main input[type=submit]:hover {
 
 main #message {
     position: absolute;
-    top: 50px;
+    top: 0px;
     border-radius: 1em;
     max-width: 500px;
     width: 80%;
@@ -68,5 +69,4 @@ main #message {
 
     left: 50%;
     transform: translate(-50%, 100%);
-
 }
