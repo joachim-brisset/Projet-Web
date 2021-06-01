@@ -50,7 +50,7 @@ main {
 }
 
 #cover-bottom .scroll-down{
-    font-size: 5em;
+    font-size: 10vh;
     margin: auto;
 }
 
@@ -58,7 +58,7 @@ main {
     --circle-width: 40vh;
 
     position: absolute;
-    bottom: 0; height: calc(var(--circle-width) + 15vh);
+    bottom: 0; height: calc(var(--circle-width));
     right: 0; width: calc(2* var(--circle-width));
 
     overflow: hidden;

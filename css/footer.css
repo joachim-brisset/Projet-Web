@@ -2,7 +2,8 @@ footer {
     position: relative;
     display: flex;
     flex-flow: column nowrap;
-    height: 27vh;
+    justify-content: space-around;
+    height: calc(34vh - var(--header-height));
     text-align: center;
     font-family: 'Racing Sans One', cursive;
     letter-spacing: 1px;
@@ -10,12 +11,8 @@ footer {
     box-shadow: 0 0 10px 2px #1A1C1F;
 }
 
-footer h1{
-    padding-top: 30px;
-}
 footer > .links {
     position: relative;
-    top: 35%;
 
     display: flex;
     flex-flow: row nowrap;
