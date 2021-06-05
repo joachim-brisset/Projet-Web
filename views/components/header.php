@@ -77,7 +77,7 @@
         </form>
 
         <nav>
-            <div class="link"> <a href="/home"> actualités  </a> </div>
+            <div class="link"> <a href="/news"> actualités  </a> </div>
             <div class="link"> <a href="/store"> magasin </a> </div>
             <div class="link"> <a href="/blog"> blog  </a> </div>
             <div class="link"> <a href="/event"> evenements  </a> </div>
