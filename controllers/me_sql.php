@@ -133,4 +133,24 @@
         }
         return $msg;
     }
+
+    function complete_data() {
+        
+        $msg = NULL;
+        
+        $name_bdd = ['username', 'firstname', 'lastname', 'gender', 'birth_day', 'jobs', 'city', 'country', 'cp', 'street', 'street_number'];
+        $name_form = ['username', 'firstname', 'lastname', 'gender', 'birth_day', 'jobs', 'city', 'country', 'cp', 'street', 'street_number'];
+        
+        $data = get_infos();
+        
+        for ($i=0; $i<sizeof($name_bdd); $i++) {
+            if (!isset($data[0][$name_bdd[$i]])) {
+                if (isset($_POST[$name_form[$i]])) {
+                    $msg = $name_form[$i]." : marché";
+                }
+            }
+        }
+        
+        return $msg;
+    }
 ?>

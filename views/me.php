@@ -30,13 +30,13 @@ include "../controllers/me_sql.php";
                 <div id="data">
                     <h2 class="section_title">MON COMPTE</h2><br>
                     
-                        <?php echo "Pseudo: ".$user[0]['username']." "; ?><br>
-                        <?php echo "Adresse e-mail: ".$mail." "; ?><br>
-                        <?php echo "Genre: ".$user[0]['gender']; ?><br>
-                        <?php echo "Date de naissance: ".$user[0]['birth_day']." "; ?><br>
-                        <?php echo "Activité: ".$user[0]['jobs']." "; ?><br>
-                        <?php echo "Ville de résidence: ".$user[0]['city']." "; ?><br>
-                        <?php echo "Rôle: ".$role; ?><br><br>
+                        <?php echo "Pseudo : ".$user[0]['username']." "; ?><br>
+                        <?php echo "Adresse e-mail : ".$mail." "; ?><br>
+                        <?php echo "Civilité : ".$user[0]['gender']; ?><br>
+                        <?php echo "Date de naissance : ".$user[0]['birth_day']." "; ?><br>
+                        <?php echo "Activité : ".$user[0]['jobs']." "; ?><br>
+                        <?php echo "Ville de résidence : ".$user[0]['city']." "; ?><br>
+                        <?php echo "Rôle : ".$role; ?><br><br>
                         
                     <h2 class="section_title">MES DONNEES PERSONNELLES</h2><br>
                     
@@ -52,6 +52,9 @@ include "../controllers/me_sql.php";
                             <p>E-mail : <?php echo $mail; ?></p>
                             <button class="change_button"><a href="change_email">Modifier e-mail »</a></button>
                         </div><br>
+                    
+                    <p id="change_data_button"><button class="change_button"><a href="complete_data">Compléter/modifier mes informations »</a></button></p>
+                    
                 </div>
 
                 <div id="calendar">

@@ -63,3 +63,11 @@ main {
     left: 50%;
     transform: translate(-50%, 100%);
 }
+
+#change_data_button {
+    text-align: center; 
+}
+
+#paragraphe {
+    color: black;
+}
