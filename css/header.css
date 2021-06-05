@@ -188,7 +188,7 @@ ion-icon {
 #responsive-header {
     position: absolute;
     top: 0;
-    right: 0;
+    right: -10px;
     height: 100%;
     width: 0;
 
@@ -208,6 +208,7 @@ ion-icon {
 }
 #responsive-header.opened {
     width: 400px;
+    right: 0;
 }
 
 #responsive-header .search-input {
