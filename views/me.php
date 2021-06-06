@@ -40,7 +40,7 @@ include "../controllers/me_sql.php";
                         
                     <h2 class="section_title">MES DONNEES PERSONNELLES</h2><br>
                     
-                        <?php if ($user[0]['firstname'] != NULL){ echo $user[0]['firstname']." "; if ($user[0]['firstname'] == NULL) { echo "<br>";}} if ($user[0]['firstname'] != NULL){ echo $user[0]['firstname']."<br>";} ?>
+                        <?php if ($user[0]['firstname'] != NULL){ echo $user[0]['firstname']." "; if ($user[0]['firstname'] == NULL) { echo "<br>";}} if ($user[0]['lastname'] != NULL){ echo $user[0]['lastname']."<br>";} ?>
                         <?php if ($user[0]['street_number'] != NULL){ echo $user[0]['street_number']." "; if ($user[0]['street'] == NULL) { echo "<br>";}} if ($user[0]['street'] != NULL){ echo $user[0]['street']."<br>";} ?>
                         <?php if ($user[0]['cp'] != NULL){ echo $user[0]['cp']." "; if ($user[0]['city'] == NULL) { echo "<br>";}} if ($user[0]['city'] != NULL){ echo $user[0]['city']."<br>";} ?>
                         <?php if ($user[0]['country'] != NULL){ echo $user[0]['country']."<br><br>";} ?>

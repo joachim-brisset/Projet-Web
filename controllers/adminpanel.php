@@ -96,7 +96,7 @@ Authorization::allow(Authorization::STAFF);
                     <?php else:
                         foreach ( $all as $event): ?>
                             <div class="event">
-                                <form class="ajax-form" ">
+                                <form class="ajax-form">
                                     <input name="event_id" hidden value="<?= $event['id']?>">
                                     <input name="event_name" value="<?= $event['name']?>" >
                                     <input name="event_desc" value="<?= $event['description']?>" >
