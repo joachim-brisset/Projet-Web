@@ -24,6 +24,28 @@ $api = [
 
     },
 
+    'getAllEvent' => function() {
+        return Event::all();
+    },
+
+    'addEvent' => function() {
+        if (!Authentication::isAuth()['auth']) return ['success' => false, "cause" => "not connected"];
+        Authorization::allow(Authorization::STAFF, function() {die;});
+
+        if (!isset($_GET['event_name']) || !isset($_GET['event_desc']) || !isset($_GET['event_place']) || !isset($_GET['event_start']) || !isset($_GET['event_end']) || !isset($_GET['event_price']) || !isset($_GET['event_place_number'])) return ['success' => false, 'cause' => 'not enough arguments'];
+
+        $params = [];
+        $params['name'] = $_GET['event_name'];
+        $params['description'] = $_GET['event_desc'];
+        $params['place'] = $_GET['event_place'];
+        $params['start_at'] = $_GET['event_start'] != "" ? $_GET['event_start'] : 0;
+        $params['end_at'] = $_GET['event_end'] != "" ? $_GET['event_end'] : 0;
+        $params['price'] = $_GET['event_price'] != "" ? $_GET['event_price'] : 0;
+        $params['place_number'] = $_GET['event_place_number'] != "" ? $_GET['event_place_number'] : 0;
+
+        return ['success' => Event::add($params), 'cause' => 'sql'];
+    },
+
     'getEvent' => function() {
         if(!isset($_GET['event_id'])) return ['success' => false, 'cause' => 'no id'];
         return Event::withID($_GET['event_id']);
@@ -34,7 +56,7 @@ $api = [
         if (!Authentication::isAuth()['auth']) return ['success' => false, "cause" => "not connected"];
         Authorization::allow(Authorization::STAFF, function() {die;});
 
-        if(!isset($_GET['event_id']) || !(isset($_GET['event_name']) || isset($_GET['event_desc']) || isset($_GET['event_place']) || isset($_GET['event_start']) || isset($_GET['event_end'])) ) return json_encode(['success' => false, 'cause' => 'not enough arguments']);
+        if(!isset($_GET['event_id']) || !(isset($_GET['event_name']) || isset($_GET['event_desc']) || isset($_GET['event_place']) || isset($_GET['event_start']) || isset($_GET['event_end'])) ) return ['success' => false, 'cause' => 'not enough arguments'];
 
         $params = [];
         if (isset($_GET['event_name'])) $params['name'] = $_GET['event_name'];
@@ -42,6 +64,8 @@ $api = [
         if (isset($_GET['event_place'])) $params['place'] = $_GET['event_place'];
         if (isset($_GET['event_start'])) $params['start_at'] = $_GET['event_start'];
         if (isset($_GET['event_end'])) $params['end_at'] = $_GET['event_end'];
+        if (isset($_GET['event_price'])) $params['price'] = $_GET['event_price'];
+        if (isset($_GET['event_place_number'])) $params['place_number'] = $_GET['event_place_number'];
 
         return ['test'=> $_GET['event_end'],'success' => Event::update(['id' => $_GET['event_id']], $params), 'cause' => 'sql'];
     }

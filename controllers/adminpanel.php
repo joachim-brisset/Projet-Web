@@ -3,6 +3,7 @@
 require_once "../models/Authentication.php";
 require_once "../models/Authorization.php";
 require_once "../models/Event.php";
+require_once "../models/Product.php";
 
 Session::appendToHistory();
 if (!Authentication::isAuth()['auth']) header('Location: /sign-in') or die;
@@ -11,7 +12,7 @@ Session::extendValidity();
 Authorization::allow(Authorization::STAFF);
 ?>
 
-
+<script defer src="/js/adminpanel-event.js"> </script>
 <body>
     <nav>
         <h1><a href="/adminpanel"> Admin Panel </a></h1>
@@ -55,96 +56,21 @@ Authorization::allow(Authorization::STAFF);
                 </tr>
                 <?php endforeach; ?>
             </table>
-        </section> */?>
+        </section> */
 
-        <header>
-            <p> Evenements </p>
-        </header>
-        <section id="event-container" >
-            <div id="in-progress-event-container" class="container">
-                <p> En cour </p>
-                <div class="result">
-                    <?php $inProgress = Event::inProgress();
-                    if (empty($inProgress)) : ?>
-                        <p> Aucun evenement en cour </p>
-                    <?php else:
-                        foreach ( $inProgress as  $event): ?>
-                            <div class="event"> <p><?php $event['name']?></p> <p><?php $event['description']?></p> <p><?php $event['place']?></p></div>
-                        <?php endforeach;
-                    endif; ?>
-                </div>
-            </div>
-            <div id="next-event-container"  class="container">
-                <p> Prochainement </p>
-                <div class="result">
-                    <?php $soon = Event::soon();
-                    if (empty($soon)) : ?>
-                        <p> Aucun evenement prochainement </p>
-                    <?php else:
-                        foreach ( $soon as  $event): ?>
-                            <div class="event"> <p><?php $event['name']?></p> <p><?php $event['description']?></p> <p><?php $event['place']?></p></div>
-                        <?php endforeach;
-                    endif; ?>
-                </div>
-            </div>
-            <div id="all-event-container"  class="container">
-                <p> Tous les evenement </p>
-                <div class="result">
-                    <?php $all = Event::all();
-                    if (empty($all)) : ?>
-                        <p> Aucun evenement </p>
-                    <?php else:
-                        foreach ( $all as $event): ?>
-                            <div class="event">
-                                <form class="ajax-form">
-                                    <input name="event_id" hidden value="<?= $event['id']?>">
-                                    <input name="event_name" value="<?= $event['name']?>" >
-                                    <input name="event_desc" value="<?= $event['description']?>" >
-                                    <input name="event_place" value="<?= $event['place']?>">
-                                    <input name="event_start" type="date" value="<?= $event['start_at']?>">
-                                    <input name="event_end" type="date" value="<?= $event['end_at']?>">
-                                    <input type="submit">
-                                </form>
-                            </div>
-                        <?php endforeach;
-                    endif; ?>
-                </div>
-            </div>
-            <div id="event-stats"  class="container">
-                <p> Statistique</p>
-            </div>
-        </section>
+        if ($_GET['page'] == 'events'):
+            $eventInProgress = Event::inProgress();
+            $eventUpComing = Event::soon();
+            $eventAll = Event::all();
+
+            require "../views/components/adminpanel/events.php";
+
+        elseif ($_GET['page'] == 'products'):
+            $allProducts = Product::all();
+
+            require "../views/components/adminpanel/products.php";
+        endif; ?>
     </main>
-<script>
-    let ajax = document.querySelectorAll(".event .ajax-form");
-    for(let i of ajax) {
-        i.addEventListener('submit', (event) => {
-            event.preventDefault();
-
-            let formData = new FormData(i);
-            let params = Array.from(formData, ([key, value]) => `${key}=${value}`).reduce( (x,y) => x + "&" + y);
-
-            console.log(params)
-            fetch(`/api/editEvent?${params}`)
-                .then( response => response.json())
-                .then( data => {
-                    if (data['success']) {
-                        //todo: notify
-                    }
-
-                    fetch(`/api/getEvent?event_id=${formData.get('event_id')}`)
-                        .then( response => response.json())
-                        .then( data => {
-                            i.querySelector("input[name=event_name]").value = data['name'];
-                            i.querySelector("input[name=event_desc]").value = data['description'];
-                            i.querySelector("input[name=event_place]").value = data['place'];
-                            i.querySelector("input[name=event_start]").value = data['start_at'];
-                            i.querySelector("input[name=event_end]").value = data['end_at'];
-                        });
-                });
-        })
-    }
-</script>
 </body>
 
 <style>
@@ -207,7 +133,7 @@ Authorization::allow(Authorization::STAFF);
         padding: 15px;
     }
 
-    main > header {
+    header {
         height: 5%;
         width: 100%;
         text-align: center;
@@ -216,7 +142,7 @@ Authorization::allow(Authorization::STAFF);
     section#event-container {
         position: relative;
         display: grid;
-        grid-template-rows: 1fr 1fr 2fr;
+        grid-template-rows: 1fr 1fr 2fr 80px;
         grid-template-columns: 3fr 1fr;
         grid-gap: 20px;
 
@@ -230,6 +156,10 @@ Authorization::allow(Authorization::STAFF);
         background: rgba(0,0,0, 0.1);
         padding: var(--radius);
     }
+    #event-container > .container > p {
+        text-align: center;
+    }
+
     #all-event-container {
         grid-row: 3/4;
         grid-column: 1/3;
@@ -242,9 +172,45 @@ Authorization::allow(Authorization::STAFF);
         grid-row: 2/3;
         grid-column: 1/2;
     }
+    #add-event-container {
+        grid-row: 4/5;
+        grid-column: 1/3;
+    }
 
     .event {
+        box-sizing: content-box;
         width: 100%;
+    }
+    .event > p {
+        display: inline-block;
+    }
+
+    input {height: 20px}
+    input[name=event_name],input[name=event_place], input[name=event_start], input[name=event_end] {
+        width: 12.5%;
+    }
+    input[name=event_desc] {
+        width: 30%;
+    }
+    input[name=event_price], input[name=event_place_number] {
+        width: 5%;
+    }
+    input[type=submit] {
+        width: 7%;
+    }
+
+
+    #event-editor {
+        position: absolute;
+        background: rgba(176, 176, 176, 0.7);
+        top: 10%;
+        bottom: 10%;
+        right: 10%;
+        left: 10%;
+
+        border-radius: 10px;
+        padding: 10px;
+        box-shadow: 0 0 10px black;
     }
     /*
     table {
