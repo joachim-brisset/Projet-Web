@@ -63,4 +63,18 @@ class User
 
         return $result[0];
     }
+
+    public static function all()
+    {
+        $db = new PDO('mysql:host=localhost;dbname=' . Variables::MYSQL_DATABASE, Variables::MYSQL_USER , Variables::MYSQL_PASS);
+
+        $req = $db->prepare("SELECT * FROM users");
+        $req->setFetchMode(PDO::FETCH_ASSOC);
+        $req->execute();
+        $result = $req->fetchAll();
+
+        if(sizeof($result) == 0) return null;
+
+        return $result;
+    }
 }

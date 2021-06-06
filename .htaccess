@@ -13,6 +13,8 @@ RewriteRule ^event$ /controllers/event [L]
 RewriteRule ^store$ /controllers/store [L]
 RewriteRule ^product$ /controllers/product/ [L,QSA]
 
+RewriteRule ^adminpanel/?(.*)$ /controllers/adminpanel?page=$1 [L]
+
 
 RewriteRule ^api/(.+)$ /controllers/api?action=$1 [L,QSA]
 

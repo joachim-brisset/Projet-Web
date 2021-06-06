@@ -1,5 +1,9 @@
 <?php
 
+require_once "../models/Event.php";
+require_once "../models/Authorization.php";
+require_once "../models/Authentication.php";
+
 /* TODO */
 
 $api = [
@@ -18,10 +22,35 @@ $api = [
 
     'addNews' => function($params) {
 
+    },
+
+    'getEvent' => function() {
+        if(!isset($_GET['event_id'])) return ['success' => false, 'cause' => 'no id'];
+        return Event::withID($_GET['event_id']);
+    },
+
+    'editEvent' => function() {
+
+        if (!Authentication::isAuth()['auth']) return ['success' => false, "cause" => "not connected"];
+        Authorization::allow(Authorization::STAFF, function() {die;});
+
+        if(!isset($_GET['event_id']) || !(isset($_GET['event_name']) || isset($_GET['event_desc']) || isset($_GET['event_place']) || isset($_GET['event_start']) || isset($_GET['event_end'])) ) return json_encode(['success' => false, 'cause' => 'not enough arguments']);
+
+        $params = [];
+        if (isset($_GET['event_name'])) $params['name'] = $_GET['event_name'];
+        if (isset($_GET['event_desc'])) $params['description'] = $_GET['event_desc'];
+        if (isset($_GET['event_place'])) $params['place'] = $_GET['event_place'];
+        if (isset($_GET['event_start'])) $params['start_at'] = $_GET['event_start'];
+        if (isset($_GET['event_end'])) $params['end_at'] = $_GET['event_end'];
+
+        return ['test'=> $_GET['event_end'],'success' => Event::update(['id' => $_GET['event_id']], $params), 'cause' => 'sql'];
     }
 ];
 
 if(isset($_GET['action'])) {
     header('Content-type: application/json');
-    echo json_encode( $api[$_GET['action']]($_GET['value'] ?? "") );
+    try {
+        echo json_encode( isset($api[$_GET['action']]) ? $api[$_GET['action']]($_GET['value'] ?? "") : "" );
+    } catch (Exception $e) {
+    }
 }
