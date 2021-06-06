@@ -15,8 +15,8 @@
     <link href="/css/jqloupe.css" rel="stylesheet" />
 
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
-    <script type="text/javascript" src="/js/jquery.min.js"></script>
-    <script type="text/javascript" src="/js/jqloupe.js"></script>
+    <script type="text/javascript" src="scripts/jquery.min.js"></script>
+    <script type="text/javascript" src="scripts/jqloupe.js"></script>
     <script src="/js/header-app.js"></script>
 
     <title>Basket Passion | Products</title>
@@ -28,7 +28,6 @@
     <?php include '../controllers/header.php' ?>
     <section id="produit">
         <div id="teeshirt">
-            
             <div class="smallcase">
                 <img src= <?php echo $img1; ?> id="img1" class="smallimg" onclick="ChangeImg(1)">
             </div>
@@ -46,59 +45,22 @@
             </div>
         </div>
         <div class="infos">
-            <?php 
-                    $produit = $_GET['product'];
-                    if($produit=='Supraw'){
-                        echo '<h1> Ballon de basket "Supraw"</h1><br>
-                        <p class="price">400,00€</p>';
-                    }
-                    if($produit=='Lakers'){
-                        echo '<h1> Ballon de basket "Lakers"</h1><br>
-                        <p class="price">50,00€</p>';
-                    }
-                    if($produit=='Panier'){
-                        echo '<h1> Panier Chinatown market</h1><br>
-                        <p class="price">70,00€</p>';
-                    }
-
-                ?>
-            
+            <h1>Ballon de basket "Lebron James"</h1>
+            <br>
+            <p class="price">400,00€</p>
             <p>Taxes incluses. Frais d'expédition calculés lors du passage à la caisse.</p>
 
             <button class="boutonPan"><b>Ajouter au panier</b></button>
 
         </div>
         <div class="desciption">
-        
             <p>
-            <?php 
-                    $produit = $_GET['product'];
-                    if($produit=='Supraw'){
-                        echo '<u>Descrption du produit :</u>
-                        <li>Desing unique et coloré, produit en quantité limité</li>
-                        <li>Nombres de couches : 3</li>
-                        <li>Vessie : Butyle parfaite tenue au gonflage</li>
-                        <li>Carcasse : Nylon renforcé, montage pro dynamique</li>';
-                    }
-                    if($produit=='Lakers'){
-                        echo '<u>Descrption du produit :</u>
-                        <li>Cuir naturel haut de gamme</li>
-                        <li>Nombres de couches : 5</li>
-                        <li>Vessie : Butyle parfaite tenue au gonflage</li>
-                        <li>Carcasse : Nylon renforcé, montage pro dynamique</li>';
-                    }
-                    if($produit=='Panier'){
-                        echo '<u>Descrption du produit :</u>
-                        <li>Résiste aux intempéries</li>
-                        <li>Desing unique, produit en quantité limité</li>
-                        <li>Attache filet : Tube ou Queue de cochon </li>
-                        <li>Arceau : Spécial Dunk</li>';
-                    }
-
-                ?>
-            </p>        
-            
-            
+                <u>Descrption du produit :</u>
+            <li>Cuir naturel haut de gamme</li>
+            <li>Nombres de couches : 5</li>
+            <li>Vessie : Butyle parfaite tenue au gonflage</li>
+            <li>Carcasse : Nylon renforcé, montage pro dynamique</li>
+            </p>
         </div>
     </section>
     <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>

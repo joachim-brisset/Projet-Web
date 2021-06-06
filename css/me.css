@@ -1,16 +1,21 @@
-/* {
+* {
     font-family: 'Racing Sans One', Arial, Helvetica, sans-serif;
-}*/
+}
 
 main {
     margin-top: calc(var(--header-height) + 20px);
+    background:rgba(255,255,255,0.025) url(/img/background.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-bottom: 50px;
+    
 }
 
 .change_button {
-    background-color: darkorange;
+    background-color: yellow;
     border: none;
-    color: white;
-    padding: 5px 5px;
+    color: black;
+    padding: 10px 10px;
     border-radius: 1em;
 }
 
@@ -21,6 +26,7 @@ main {
 #change_password, #change_email {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 #data {
@@ -68,3 +74,13 @@ main {
     text-align: center; 
 }
 
+#paragraphe {
+    color: black;
+}
+
+div#data{
+    background: #9080CD;
+    padding: 50px;
+    border-radius: 50px;
+    
+}

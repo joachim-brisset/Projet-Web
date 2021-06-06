@@ -39,7 +39,7 @@ $reponse = $bdd->query('SELECT * FROM events');
 
 
 <section id="main">
-    <h1>event</h1>
+    <h1>EVENEMENTS</h1>
 
     <div class="annonces">
 

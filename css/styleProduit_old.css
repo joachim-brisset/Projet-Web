@@ -34,8 +34,8 @@ p {
 }
 
 .phototee {
-    width: 24vw;
-    left: 0%;
+    width: 28vw;
+    left: -1%;
     top: -1%;
     position: absolute;
     border-color: whitesmoke;
@@ -46,14 +46,14 @@ p {
 }
 
 .zoom {
-    width: 24vw;
-    height: 24vw;
+    width: 29vw;
+    height: 22vw;
     left: 10%;
-    margin-top: -20%;
+    margin-top: -15%;
     position: absolute;
     overflow: hidden;
     border-radius: 10%;
-    background-color: white;
+    background-color: whitesmoke;
 }
 
 .rond {
@@ -66,8 +66,7 @@ p {
 }
 
 .ronds {
-    margin-left: 6%;
-    margin-top : 0%;
+    margin-left: 10%;
     display: block;
     height: 1vw;
     width: 29vw;
@@ -82,7 +81,6 @@ p {
     border-radius: 15%;
     position: relative;
     cursor: pointer;
-    overflow: hidden;
 }
 
 .smallimg {
@@ -135,7 +133,7 @@ h2 {
 }
 
 .boutonPan {
-    top: 130%;
+    top: 99%;
     left: 15%;
     position: absolute;
     background-color: rgb(255, 255, 255);
@@ -144,7 +142,7 @@ h2 {
     font-family: "Gill Sans", sans-serif;
     font-size: 1.25vw;
     width: 40%;
-    height: 40%;
+    height: 20%;
     border-width: 10%;
     border-radius: 10px;
     cursor: pointer;
@@ -189,7 +187,6 @@ body {
     background-size: 100%;
     width: 100%;
     color: black;
-    font-family: Racing Sans One,Arial, Helvetica, sans-serif;
 }
 
 body:before {

@@ -15,8 +15,8 @@ body{
     margin-top: var(--header-height);
 
     min-height: 65em;
-    background-color: #542583;
-    background-image: url(/Projet-Web/images/blob-haikei.svg);
+    
+    background:rgba(255,255,255,0.025) url(/img/background.svg);
     background-repeat: no-repeat;
     background-size: cover;
     padding-bottom: 40px;
@@ -29,7 +29,7 @@ h1, h2{
 
 #main h1{
     text-align: center;
-    font-size: 50px;
+    font-size: 70px;
 }
 
 .annonces{
@@ -63,7 +63,7 @@ h2{
 .annonce{
     width: 40%;
     height: 600px;
-    background-color:#47216C ;
+    background-color:#501149 ;
     /* background-size: 500px 300px; */
     border-radius: 30px;
     min-width: 250px;

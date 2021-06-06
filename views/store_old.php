@@ -26,7 +26,7 @@
         <div class="first-row">
 
             <a class="product tshirt-orchide"  onclick="document.getElementById('premierproduit').submit()">
-                <form method="post" action="/product?product=Supraw" id="premierproduit" class="inline">
+                <form method="post" action="/product" id="premierproduit" class="inline">
                     <input type="hidden" name="produit" value="Tshirt-orchide">
                 </form>
 
@@ -46,7 +46,7 @@
         <div class="second-row">
 
             <a class="product hoodie" href="#" onclick="document.getElementById('troisièmeproduit').submit()">
-                <form method="post" action="/product?product=Lakers" id="troisièmeproduit" class="inline">
+                <form method="post" action="produit.php" id="troisièmeproduit" class="inline">
                     <input type="hidden" name="produit" value="Hoodie genese" >
                 </form>
                 <div class="product-details">
@@ -56,10 +56,7 @@
             </a>
 
 
-            <a class="product secret" href="#" onclick="document.getElementById('produitsecret').submit()">
-                <form method="post" action="/product?product=Panier" id="produitsecret" class="inline">
-                    <input type="hidden" name="produit" value="Hoodie genese" >
-                </form>
+            <a class="product secret">
                 <div class="product-details">
                     <p class="product-name">Panier Chinatown Market</p>
                     <p class="product-price">70,00€</p>

@@ -1,5 +1,7 @@
 main {
-    background: whitesmoke ;
+    background:rgba(255,255,255,0.025) url(/img/background.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
     position: absolute;
     top: 0; bottom: 0;
     left: 0; right: 0;
@@ -70,3 +72,4 @@ main #message {
     left: 50%;
     transform: translate(-50%, 100%);
 }
+
