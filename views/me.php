@@ -40,10 +40,10 @@ include "../controllers/me_sql.php";
                         
                     <h2 class="section_title">MES DONNEES PERSONNELLES</h2><br>
                     
-                        <?php echo $user[0]['firstname']." "; echo $user[0]['lastname']; ?><br>
-                        <?php echo $user[0]['street_number']." "; echo $user[0]['street']; ?><br>
-                        <?php echo $user[0]['cp'].", "; echo $user[0]['city']; ?><br>
-                        <?php echo $user[0]['country']; ?><br><br>
+                        <?php if ($user[0]['firstname'] != NULL){ echo $user[0]['firstname']." "; if ($user[0]['firstname'] == NULL) { echo "<br>";}} if ($user[0]['firstname'] != NULL){ echo $user[0]['firstname']."<br>";} ?>
+                        <?php if ($user[0]['street_number'] != NULL){ echo $user[0]['street_number']." "; if ($user[0]['street'] == NULL) { echo "<br>";}} if ($user[0]['street'] != NULL){ echo $user[0]['street']."<br>";} ?>
+                        <?php if ($user[0]['cp'] != NULL){ echo $user[0]['cp']." "; if ($user[0]['city'] == NULL) { echo "<br>";}} if ($user[0]['city'] != NULL){ echo $user[0]['city']."<br>";} ?>
+                        <?php if ($user[0]['country'] != NULL){ echo $user[0]['country']."<br><br>";} ?>
                         <div id="change_password">
                             <p>Mot de passe : ******** </p>
                             <button class="change_button"><a href="change_password">Modifier mot de passe »</a></button>
@@ -60,12 +60,18 @@ include "../controllers/me_sql.php";
                 <div id="calendar">
                     <h2 class="section_title">CALENDRIER</h2><br>
                     <h3 id="futur_events">Evénements à venir :</h3><br>
-                    <?php $event = get_event(); 
-                        for ($i=0; $i<sizeof($event); $i++) {
-                            echo "Evénement : ". $event[$i]['name'].", ";
-                            echo $event[$i]['start_at'].", ";
-                            echo $event[$i]['place'].".<br>"; 
-                            echo "Description : ".$event[$i]['description']."<br><br>"; 
+                    <?php 
+                        $event = get_event();
+                        if ($event != NULL) {
+                            for ($i=0; $i<sizeof($event); $i++) {
+                                echo "Evénement : ". $event[$i]['name'].", ";
+                                echo $event[$i]['start_at'].", ";
+                                echo $event[$i]['place'].".<br>"; 
+                                echo "Description : ".$event[$i]['description']."<br><br>"; 
+                            }
+                        }
+                        else {
+                            echo "Aucun événement à venir.";
                         }
                     ?>
                 </div>

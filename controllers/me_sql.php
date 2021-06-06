@@ -76,12 +76,9 @@
             if ($_POST['current_mail'] == $result[0]['mail']) {
                 if ($_POST['current_mail'] != $_POST['new_mail']) {
 
-                    $req = $db -> prepare("UPDATE users u
-                                            SET u.mail = REPLACE(mail, :current_mail, :new_mail)
-                                            WHERE u.id = :user_id");
+                    $req = $db -> prepare("UPDATE users u SET u.mail = :new_mail WHERE u.id = :user_id");
                     $req->setFetchMode(PDO::FETCH_ASSOC);
                     $req -> bindValue( ":user_id", $_SESSION[Session::ID], PDO::PARAM_STR);
-                    $req -> bindValue( ":current_mail", $_POST['current_mail'], PDO::PARAM_STR);
                     $req -> bindValue( ":new_mail", $_POST['new_mail'], PDO::PARAM_STR);
                     $req -> execute();
                     header("Location: /");
@@ -112,12 +109,9 @@
             if (password_verify($_POST["current_password"], $result[0]['password'])) {
                 if ($_POST['current_password'] != $_POST['password']) {
 
-                    $req = $db -> prepare("UPDATE users u
-                                            SET u.password = REPLACE(password, :current_password, :new_password)
-                                            WHERE u.id = :user_id");
+                    $req = $db -> prepare("UPDATE users u SET u.password = :new_password WHERE u.id = :user_id");
                     $req->setFetchMode(PDO::FETCH_ASSOC);
                     $req -> bindValue( ":user_id", $_SESSION[Session::ID], PDO::PARAM_STR);
-                    $req -> bindValue( ":current_password", $result[0]['password'], PDO::PARAM_STR);
                     $req -> bindValue( ":new_password", password_hash($_POST['password'], PASSWORD_DEFAULT), PDO::PARAM_STR);
                     $req -> execute();
                     header("Location: /");
@@ -134,6 +128,37 @@
         return $msg;
     }
 
+    function control_data() {
+    
+        $msg = NULL;
+        $name_form = ['username', 'firstname', 'lastname', 'birth_day', 'jobs', 'city', 'country', 'cp', 'street', 'street_number'];
+        
+        for ($i=0; $i<sizeof($name_form); $i++) {
+            if ($_POST[$name_form[$i]] != NULL) {
+                if ($i == 0) {
+                    if (!preg_match("#^[A-Za-z\é\è\ê\-]+$#", $_POST[$name_form[$i]])) {
+                        $_SESSION['data_error'][$i] = " Attention, uniquement des lettres.";
+                    }
+                }
+                if (($i==1) or ($i==2) or ($i==4) or ($i==5) or ($i==6) or ($i==8)) {
+                    if (!preg_match("#^[A-Z][A-Za-z\é\è\ê\- ]+$#", $_POST[$name_form[$i]])) {
+                        $_SESSION['data_error'][$i] = " Attention, uniquement des lettres et une majuscule en première lettre.";
+                    }
+                }
+                if ($i==7) {
+                    if (!preg_match("/^[0-9]{5}$/", $_POST[$name_form[$i]])) {
+                        $_SESSION['data_error'][$i] = " Attention, uniquement 5 chiffres.";
+                    }
+                }
+                if ($i == 9) {
+                    if (!preg_match("/^[0-9]$/", $_POST[$name_form[$i]])) {
+                        $_SESSION['data_error'][$i] = " Attention, uniquement des chiffres.";
+                    }
+                }
+            }
+        }
+    }
+
     function complete_data() {
         
         $msg = NULL;
@@ -142,15 +167,24 @@
         $name_form = ['username', 'firstname', 'lastname', 'gender', 'birth_day', 'jobs', 'city', 'country', 'cp', 'street', 'street_number'];
         
         $data = get_infos();
-        
+
         for ($i=0; $i<sizeof($name_bdd); $i++) {
-            if (!isset($data[0][$name_bdd[$i]])) {
-                if (isset($_POST[$name_form[$i]])) {
-                    $msg = $name_form[$i]." : marché";
+            if ($data[0][$name_bdd[$i]] == NULL) {
+                if ($_POST[$name_form[$i]] != NULL) {
+                    $db = new PDO('mysql:host=localhost;dbname=' . Variables::MYSQL_DATABASE, Variables::MYSQL_USER , Variables::MYSQL_PASS);
+                    $req = $db -> prepare("UPDATE users u SET u.".$name_bdd[$i]." = '".$_POST[$name_form[$i]]."' WHERE u.id = :user_id");
+                    $req->setFetchMode(PDO::FETCH_ASSOC);
+                    $req -> bindValue( ":user_id", $_SESSION[Session::ID], PDO::PARAM_INT);
+                    $req -> execute();
                 }
             }
+            else if ($data[0][$name_bdd[$i]] != $_POST[$name_form[$i]]) {
+                $db = new PDO('mysql:host=localhost;dbname=' . Variables::MYSQL_DATABASE, Variables::MYSQL_USER , Variables::MYSQL_PASS);
+                $req = $db -> prepare("UPDATE users u SET u.".$name_bdd[$i]." = '".$_POST[$name_form[$i]]."' WHERE u.id = :user_id");
+                $req->setFetchMode(PDO::FETCH_ASSOC);
+                $req -> bindValue( ":user_id", $_SESSION[Session::ID], PDO::PARAM_INT);
+                $req -> execute();
+            }
         }
-        
-        return $msg;
     }
 ?>

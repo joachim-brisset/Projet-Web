@@ -29,7 +29,8 @@ main form h1 {
 }
 
 main input[type=text],
-main input[type=date] {
+main input[type=date],
+main input[type=number] {
     width: 100%;
     height: 12%;
     padding: 12px 20px;
@@ -66,22 +67,6 @@ main input[type=submit]:hover {
     font-family: Poppins, Arial;
 }
 
-main #message {
-    position: absolute;
-    top: 50px;
-    border-radius: 1em;
-    max-width: 500px;
-    width: 80%;
-    background: #cf3131;
-    border: solid 3px #960a0a;
-    padding: 0.25em;
-    text-align: center;
-
-    left: 50%;
-    transform: translate(-50%, 100%);
-
-}
-
 main #complete_data_presentation {
     display: flex;
     justify-content: space-around;
@@ -102,4 +87,12 @@ main #civility {
 
 main #button_change_data {
     text-align: center;
+}
+
+#paragraphe {
+    color: black;
+}
+
+.errorForm {
+    color: red;
 }
