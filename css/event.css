@@ -7,18 +7,19 @@ body{
     color: white;
     font-family: 'Racing Sans One', cursive;
     font-weight: normal;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 
 #main{
     margin-top: var(--header-height);
 
-    height: 65em;
+    min-height: 65em;
     background-color: #542583;
     background-image: url(/Projet-Web/images/blob-haikei.svg);
     background-repeat: no-repeat;
     background-size: cover;
+    padding-bottom: 40px;
     
 }
 
@@ -60,7 +61,7 @@ h2{
     
 }
 .annonce{
-    width: 20%;
+    width: 40%;
     height: 600px;
     background-color:#47216C ;
     /* background-size: 500px 300px; */

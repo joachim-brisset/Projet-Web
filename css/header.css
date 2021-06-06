@@ -175,8 +175,9 @@ header {
     background: grey;
 }
 
-ion-icon {
+.crazyicon {
     font-size: 1.5em;
+    cursor: pointer;
 }
 
 #search-bar input[type=checkbox] {

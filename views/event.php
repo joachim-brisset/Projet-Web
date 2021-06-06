@@ -16,6 +16,24 @@
     <script src="/js/header-app.js"></script>
     <title>Basket Passion | Event</title>
 </head>
+
+<?php
+try
+{
+	$bdd = new PDO('mysql:host=localhost;dbname=assos;charset=utf8', 'root', '');
+}
+catch (Exception $e)
+{
+        die('Erreur : ' . $e->getMessage());
+}
+
+$reponse = $bdd->query('SELECT * FROM events');
+
+
+?>
+
+
+
 <body class="scrollable">
 <?php include '../controllers/header.php' ?>
 
@@ -25,22 +43,17 @@
 
     <div class="annonces">
 
-        <div class="scrollable annonce one">
-            <h2>MATCH AMICAL</h2>
-            <p>opposant : SXY <br> date 13/05/21 <br> horraire: 20h30 <br>lieu: maradas</p>
+<?php
+    while($donnees = $reponse->fetch())
+{ ?>
+        <div class="scrollable annonce">
+            <h2><?php echo $donnees["name"] ?></h2>
+            <p><?php echo $donnees["description"]?> <br> date :<?php echo $donnees["start_at"] ?><?php if (!empty($donnees["end_at"])){echo " au " ,$donnees["end_at"];} ?> <br> lieu : <?php echo $donnees["place"] ?> <br> places : <?php if (!empty($donnees["place_number"])){echo $donnees["place_number"] ;}else {echo "illimité";}  ?></p>
 
         </div>
 
-        <div class="scrollable annonce two">
-            <h2>GOUTER</h2>
-            <p>touts les membres sont conviés au gouter de fin d'année</p>
-        </div>
-
-        <div class="scrollable annonce trois">
-            <h2>RECOLTE DE FONDS</h2>
-            <p>récolte de fonds le 10/05 à l’acceuil de CY TECH pour financer l’équipement de l’équipe</p>
-        </div>
-
+        
+<?php } ?>
     </div>
 
 </section>

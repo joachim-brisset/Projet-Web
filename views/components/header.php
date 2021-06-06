@@ -21,7 +21,7 @@
                     <img src="/img/user-icon.svg">
                 </a>
             <?php endif; ?>
-            <div id="search-bar-toggler"> <ion-icon name="search"></ion-icon> </div>
+            <div class="crazyicon" id="search-bar-toggler"> <ion-icon name="search"></ion-icon> </div>
         </div>
 
         <div id="burger-menu">
