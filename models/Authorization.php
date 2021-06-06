@@ -1,6 +1,8 @@
 <?php
 
 require_once 'Roles.php';
+require_once "User.php";
+require_once "Session.php";
 
 class Authorization {
 
@@ -21,7 +23,7 @@ class Authorization {
 
         $userPower = Roles::withID($user['role_id'])['power'];
 
-        if($mandatoryPower > $userPower) $fallback ? $fallback() : header('Location: /');
+        if($mandatoryPower > $userPower) $fallback ? $fallback() : header('Location: /') or die;
     }
 
 
