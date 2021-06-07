@@ -21,6 +21,7 @@ Authorization::allow(Authorization::STAFF);
             <li class="nav-link"><a href="/adminpanel/users"> <p>Utilisateurs </p> <img src="/img/arrow.svg"> </a></li>
             <li class="nav-link"><a href="/adminpanel/events"> <p>Evenements</p> <img src="/img/arrow.svg"> </a></li>
             <li class="nav-link"><a href="/adminpanel/products"> <p>Produits</p> <img src="/img/arrow.svg"> </a></li>
+            <li class="nav-link"><a href="/adminpanel/budget"> <p>Gestion du budget</p> <img src="/img/arrow.svg"> </a></li>
         </ul>
     </nav>
     <main>
@@ -70,6 +71,8 @@ Authorization::allow(Authorization::STAFF);
             $allProducts = Product::all();
 
             require "../views/components/adminpanel/products.php";
+        elseif ($_GET['page'] == 'budget'):
+            require "../views/components/adminpanel/budget.php";
         endif; ?>
     </main>
 </body>
