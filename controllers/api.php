@@ -3,6 +3,7 @@
 require_once "../models/Event.php";
 require_once "../models/Authorization.php";
 require_once "../models/Authentication.php";
+require_once "../models/Registration.php";
 
 /* TODO */
 
@@ -22,6 +23,34 @@ $api = [
 
     'addNews' => function($params) {
 
+    },
+
+    'unregisterEvent' => function() {
+        if (!Authentication::isAuth()['auth']) return ['success' => false, 'cause' => "not auth"];
+        if (!isset($_GET['event_id'])) return ['success' => false, 'cause' => 'no user_id parameter'];
+
+        if (isset($_GET['user_id'])) {
+            Authorization::allow(Authorization::STAFF, function () {die;});
+            return ['success' => Registration::unregister($_GET['event_id'], $_GET['user_id']), 'cause' => 'sql'];
+        } else {
+            return ['success' => Registration::unregister($_GET['event_id'], $_SESSION[Session::ID]), 'cause' => 'sql'];
+        }
+    },
+
+    'registerEvent' => function() {
+        if (!Authentication::isAuth()['auth']) return ['success' => false, 'cause' => "not auth"];
+        if (!isset($_GET['event_id'])) return ['success' => false, 'cause' => 'no user_id parameter'];
+
+        if (isset($_GET['user_id'])) {
+            Authorization::allow(Authorization::STAFF, function () {die;});
+            return ['success' => Registration::register($_GET['event_id'], $_GET['user_id']), 'cause' => 'sql'];
+        } else {
+            if (Event::withID($_GET['event_id'])['place_number'] > sizeof(Registration::with(['event_id' => $_GET['event_id']]))) {
+                return ['success' => Registration::register($_GET['event_id'], $_SESSION[Session::ID]), 'cause' => 'sql'];
+            } else {
+                return ['success' => false, 'cause' => 'Full'];
+            }
+        }
     },
 
     'getAllEvent' => function() {

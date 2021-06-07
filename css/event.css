@@ -61,6 +61,7 @@ h2{
     
 }
 .annonce{
+    position: relative;
     width: 40%;
     height: 600px;
     background-color:#501149 ;
@@ -72,4 +73,24 @@ h2{
     margin-top: 20px;
     overflow-y: scroll;
     overflow-x: hidden;
+}
+
+.ajax-form {
+    margin: auto;
+    width: 40%;
+    height: 2em;
+}
+.ajax-form > input[type=submit] {
+    width: 100%;
+    height: 100%;
+    font-size: 1.2em;
+    color: white;
+    border-radius: 1em;
+    background: orange;
+    border: none;
+}
+.ajax-form > input[type=submit]:hover {
+    box-shadow: 0 0 5px 0 darkorange;
+    outline: none;
+    zoom: 1.05;
 }
