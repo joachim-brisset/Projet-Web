@@ -38,10 +38,14 @@
             } else {
                 this.addEventListener('submit', handleRegistration, {once: true});
                 this.querySelector("input[type=submit]").value = "Fail registration";
-                setTimeout(() => this.querySelector("input[type=submit]").value = "S'inscrire", 1000);
+
 
                 if(response['cause'] == "not auth") {
                     window.location.replace("/sign-in");
+                } else if(response['cause'] == "Full") {
+                    setTimeout(() => this.querySelector("input[type=submit]").value = "Full", 1000);
+                } else {
+                    setTimeout(() => this.querySelector("input[type=submit]").value = "S'inscrire", 1000);
                 }
             }
         });

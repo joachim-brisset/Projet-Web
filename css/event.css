@@ -89,8 +89,11 @@ h2{
     background: orange;
     border: none;
 }
-.ajax-form > input[type=submit]:hover {
+.ajax-form > input[type=submit]:hover:not([disabled]) {
     box-shadow: 0 0 5px 0 darkorange;
     outline: none;
     zoom: 1.05;
+}
+.ajax-form > input[type=submit][disabled]{
+    background: #626262;
 }

@@ -55,11 +55,12 @@ $reponse = $bdd->query('SELECT * FROM events');
                 places : <?php if ($limited = !empty($donnees["place_number"])){echo $donnees["place_number"] ;}else {echo "illimité";}  ?>
             </p>
 
-            <?php if ($limited): ?>
-                <?php $unregistered = !Authentication::isAuth()['auth'] || empty(Registration::with(['event_id' => $donnees['id'], 'user_id' => $_SESSION[Session::ID]]))?>
+            <?php if ($limited):
+                $full = Event::withID($donnees['id'])['place_number'] <= sizeof(Registration::with(['event_id' => $donnees['id']]));
+                $unregistered = !Authentication::isAuth()['auth'] || empty(Registration::with(['event_id' => $donnees['id'], 'user_id' => $_SESSION[Session::ID]]))?>
                 <form class="ajax-form <?= $unregistered ? 'register' : 'unregister'?>">
                     <input hidden name="event_id" value="<?= $donnees['id']?>">
-                    <input type="submit" value="<?= $unregistered ? "S'inscrire" : "Se desinscrire"  ?>">
+                    <input <?= ($full && $unregistered ? "disabled" : "") ?> type="submit" value="<?= $unregistered ? ($full ? "Full" : "S'inscrire") : "Se desinscrire"  ?>">
                 </form>
             <?php endif; ?>
 
