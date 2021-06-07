@@ -5,7 +5,7 @@ require_once "../models/Authorization.php";
 require_once "../models/Authentication.php";
 require_once "../models/Registration.php";
 
-/* TODO */
+/* TODO: checks var types */
 
 $api = [
     'getNews' => function($params) {

@@ -13,7 +13,7 @@ class Registration {
         }
         $cond = implode(" AND ",$temp);
 
-        $req = $db->prepare("SELECT * FROM registration WHERE $cond");
+        $req = $db->prepare("SELECT * FROM registration" . (!empty($where) ? "WHERE $cond" : "") );
         $req->setFetchMode(PDO::FETCH_ASSOC);
         /*not working
         $req->bindValue( ":cond", $cond, PDO::PARAM_STR);

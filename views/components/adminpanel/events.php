@@ -37,7 +37,7 @@
     </div>
     <div id="all-event-container"  class="container">
         <p> Tous les evenement </p>
-        <div>
+        <div class="container-header">
             <input name="event_name" disabled value="Titre">
             <input name="event_desc" disabled value="Description">
             <input name="event_place" disabled value="Lieux">
@@ -53,7 +53,7 @@
             <?php else: ?>
                 <?php foreach ($eventAll as $event): ?>
                     <div class="event">
-                        <form class="ajax-form">
+                        <form class="ajax-form event-info">
                                 <input name="event_id" hidden value="<?= $event['id']?>">
                                 <input name="event_name" value="<?= $event['name'] ?>">
                                 <input name="event_desc" value="<?= $event['description'] ?>">
@@ -62,8 +62,29 @@
                                 <input name="event_end" type="date" value="<?= $event['end_at']?>">
                                 <input name="event_price" type="number" value="<?= $event['price'] ?>">
                                 <input name="event_place_number" type="number" value="<?= $event['place_number'] ?>">
-                                <input type="submit">
+                                <input type="submit" value="editer">
                         </form>
+                        <button class="expand-button"> + </button>
+                        <div class="user-container">
+                            <?php $registrations = Registration::with(['event_id' => $event['id']]) ?>
+                            <p> nombre d'inscription : <?= sizeof($registrations)?></p>
+                            <input disabled value="USERNAME">
+                            <input disabled value="MAIL">
+                            <input disabled value="GENDER">
+                            <input disabled value="REGISTRATION DATE">
+                            <?php foreach ($registrations as $registration):
+                                $user = User::withID($registration['user_id']) ?>
+                            <form class="ajax-form user-info">
+                                <input name="event_id" hidden value="<?= $event['id']?>">
+                                <input name="user_id" hidden value="<?= $user['id']?>">
+                                <input disabled value="<?= $user['username']?>">
+                                <input disabled value="<?= $user['mail']?>">
+                                <input disabled value="<?= $user['gender']?>">
+                                <input disabled value="<?= $registration['registered_at']?>">
+                                <input type="submit" value="-">
+                            </form>
+                            <?php endforeach; ?>
+                        </div>
                     </div>
                 <?php endforeach; ?>
             <?php endif; ?>
@@ -81,7 +102,7 @@
             <input name="event_price" disabled value="Prix">
             <input name="event_place_number" disabled value="Places">
         </div>
-        <form class="ajax-form">
+        <form class="ajax-form event-info">
             <input name="event_name">
             <input name="event_desc">
             <input name="event_place">
@@ -97,7 +118,7 @@
         <p> Statistique </p>
         <div class="result">
             <p> Nombre d'évenement : <?= sizeof($eventAll) ?> </p>
-
+            <p> Nombre d'inscription : <?= sizeof(Registration::with([])) ?> </p>
         </div>
     </div>
 </section>

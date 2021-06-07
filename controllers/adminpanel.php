@@ -4,6 +4,7 @@ require_once "../models/Authentication.php";
 require_once "../models/Authorization.php";
 require_once "../models/Event.php";
 require_once "../models/Product.php";
+require_once "../models/Registration.php";
 
 Session::appendToHistory();
 if (!Authentication::isAuth()['auth']) header('Location: /sign-in') or die;
@@ -155,6 +156,8 @@ Authorization::allow(Authorization::STAFF);
         border-radius: var(--radius);
         background: rgba(0,0,0, 0.1);
         padding: var(--radius);
+
+        box-shadow: 0 0 3px 0 black;
     }
     #event-container > .container > p {
         text-align: center;
@@ -177,15 +180,24 @@ Authorization::allow(Authorization::STAFF);
         grid-column: 1/3;
     }
 
-    .event {
+    .event , .container-header{
+        position: relative;
+        height: 20px;
         box-sizing: content-box;
         width: 100%;
+        overflow-y: hidden;
     }
-    .event > p {
-        display: inline-block;
+    .event.expanded {
+        height: auto;
+    }
+    .event > button {
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 20px;
     }
 
-    input {height: 20px}
+    .ajax-form input,.ajax-form button {height: 20px;}
     input[name=event_name],input[name=event_place], input[name=event_start], input[name=event_end] {
         width: 12.5%;
     }
@@ -196,35 +208,17 @@ Authorization::allow(Authorization::STAFF);
         width: 5%;
     }
     input[type=submit] {
-        width: 7%;
+        width: 5%;
+    }
+
+    .user-container {
+        padding: 0 15px;
+        margin-bottom: 10px;
+    }
+    .user-info > input[type=submit] {
+        width: 20px;
     }
 
 
-    #event-editor {
-        position: absolute;
-        background: rgba(176, 176, 176, 0.7);
-        top: 10%;
-        bottom: 10%;
-        right: 10%;
-        left: 10%;
 
-        border-radius: 10px;
-        padding: 10px;
-        box-shadow: 0 0 10px black;
-    }
-    /*
-    table {
-        width: 100%;
-
-        border-radius: 5px;
-        padding: 5px;
-    }
-
-    tr:nth-child(even) {
-        background: #cad4de;
-    }
-    tr:nth-child(odd) {
-        background: aliceblue;
-    }
-    */
 </style>

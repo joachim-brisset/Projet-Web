@@ -30,7 +30,7 @@
     }
 
     function loadUpdateEvent() {
-        let ajax = document.querySelectorAll("#all-event-container .ajax-form");
+        let ajax = document.querySelectorAll("#all-event-container .ajax-form.event-info");
         ajax.forEach((item) => item.addEventListener('submit', handleUpdate )) /*You can't rebind arrow function*/
     }
 
@@ -46,13 +46,44 @@
     }
 
     function loadAddEvent() {
-        let item = document.querySelector("#add-event-container .ajax-form");
+        let item = document.querySelector("#add-event-container .ajax-form.event-info");
         item.addEventListener('submit', handleAdd);
     };
+
+    const loadExpandEvent = () => {
+        let events = document.querySelectorAll("#all-event-container .event");
+        events.forEach( eventDiv => {
+            function handleExpand(event) {
+                eventDiv.classList.toggle("expanded")
+            }
+            eventDiv.querySelector(".expand-button").addEventListener('click', handleExpand );
+        });
+    }
+
+    const loadRemoveUserEvent = () => {
+        function handleRemoveUser(event) {
+            event.preventDefault();
+
+            let formData = new FormData(this);
+            let params = Array.from(formData, ([key, value]) => `${key}=${value}`).reduce( (x,y) => x + "&" + y);
+            console.log(params)
+
+            fetch(`/api/unregisterEvent?${params}`).then(data => data.json()).then(response => {
+                if (response['success']) {
+                    window.location.reload(true);
+                }
+            })
+        }
+
+        let userInfoForms = document.querySelectorAll("#all-event-container .ajax-form.user-info");
+        userInfoForms.forEach( form => form.addEventListener('submit', handleRemoveUser))
+    }
 
     function init() {
         loadUpdateEvent();
         loadAddEvent();
+        loadExpandEvent();
+        loadRemoveUserEvent();
     }
 
     window.addEventListener('load', init);
