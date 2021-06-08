@@ -46,9 +46,9 @@ $reponse = $bdd->query('SELECT * FROM articles ORDER BY created_at  ');
                     <div>
                         <h3 class="title"><?php echo $item["title"] ?></h3>
                         <h4 class="date">posté le <?php echo $item["created_at"] ?></h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam odio repellendus facere accusamus amet error assumenda similique voluptatibus commodi ut quaerat omnis velit aspernatur quia fugit, earum, dicta id accusantium. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam odio repellendus facere accusamus amet error assumenda similique voluptatibus commodi ut quaerat omnis velit aspernatur quia fugit, earum, dicta id accusantium.</p>
-                        <a href="" class="suite">Lire la suite</a>
+                        <p class="corps"><?php echo $item["corps"] ?></p>
                     </div>
+                    <a href="/article?eventid=<?=$item["id"] ?>" class="suite">Lire la suite</a>
                 </div>
             <?php endwhile; ?>
             
