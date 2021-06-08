@@ -82,7 +82,7 @@
                     <input type="number" name="qqte" value=1>
                 </label>
                 <input hidden name="ProductId" value=<?php echo $CodeProduit ?>>
-                <input type="submit" class="boutonPan" onclick="ajouterArticle($CodeProduit, $NbProduit, $prixProduit)" id='ajouter'><b>Ajouter au panier</b></input>
+                <input type="submit" class="boutonPan" id='ajouter'><b>Ajouter au panier</b></input>
             </form>
             
 
@@ -158,3 +158,4 @@
         document.getElementById('rond2').style.background = 'rgb(109, 109, 109)';
     }
 </script>
+<script defer src="/js/ajouterPanier.js"> </script>

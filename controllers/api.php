@@ -61,6 +61,11 @@ $api = [
         if(!isset($_GET["ProductId"])||!isset($_GET["qqte"])) return['success' => false , 'cause' => "missing parameters"];
         return['success'=>ajouterArticle($_GET["ProductId"],$_GET["qqte"])];
     },
+    'clearCart' => function () {
+        if (!Authentication::isAuth()['auth']) return ['success' => false, 'cause' => "not auth"];
+        supprimePanier();
+        return ['success' => true];
+    },
 
     'getAllEvent' => function() {
         return Event::all();

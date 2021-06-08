@@ -34,7 +34,7 @@ function ajouterArticle($CodeProduit, $NbProduit){
       {
          //Sinon on ajoute le produit
          array_push( $_SESSION['panier']['CodeProduit'],$CodeProduit);
-         array_push( $_SESSION['panier']['NbP¨roduit'], $NbProduit);
+         array_push( $_SESSION['panier']['NbProduit'], $NbProduit);
          array_push( $_SESSION['panier']['prixProduit'],Product::withID($CodeProduit)["price"]);
          return true;
       }

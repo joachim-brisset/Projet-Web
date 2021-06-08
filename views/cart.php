@@ -114,7 +114,7 @@ if (!$erreur){
 
 
     ?>
-    <input type="submit" action="supprimePanier()"></input>
+    <button id="clearCart-but"> Vider le panier</button>
     
 </div>
 
@@ -122,6 +122,4 @@ if (!$erreur){
 
 
 </body>
-
-
-</body>
+<script defer src="/js/supprimerPanier.js"></script>
