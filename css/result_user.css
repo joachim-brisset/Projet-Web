@@ -1,0 +1,27 @@
+main{
+    padding-top: var(--header-height);
+    font-family: Racing Sans One,Arial, Helvetica, sans-serif;
+ }
+
+ main h1{
+     text-align: center;
+     margin-top: 30px;
+     padding-top: 20px;
+     padding-bottom: 20px;
+     margin-left: 30%;
+     margin-right: 30%;
+     background-color: #5F176D;
+     border-radius: 20px;
+     box-shadow: 0 0 10px var(--shadow-color);
+     text-transform: uppercase;
+ }
+
+ main section{
+     display: flex;
+     justify-content: space-evenly;
+     padding-top: 80px;
+ }
+
+main section h2{
+    padding-top: 30px;
+}

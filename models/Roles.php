@@ -1,4 +1,7 @@
-<?php class Roles
+<?php 
+
+require_once "../variables.php";
+ class Roles
 {
     public static function withRole($role)
     {
