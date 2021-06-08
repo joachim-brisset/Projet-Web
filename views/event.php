@@ -52,7 +52,8 @@ $reponse = $bdd->query('SELECT * FROM events');
             <p><?php echo $donnees["description"]?> <br>
                 date : <?php echo $donnees["start_at"] ?><?php if (!empty($donnees["end_at"]) && $donnees['end_at'] != "0000-00-00"){echo " au " ,$donnees["end_at"];} ?> <br>
                 lieu : <?php echo $donnees["place"] ?> <br>
-                places : <?php if ($limited = !empty($donnees["place_number"])){echo $donnees["place_number"] ;}else {echo "illimité";}  ?>
+                places : <?php if ($limited = !empty($donnees["place_number"])){echo $donnees["place_number"] ;}else {echo "illimité";} 
+                if (!empty($donnees['price'])) { echo "<br>Prix : ".$donnees['price']."€"; }?>
             </p>
 
             <?php if ($limited):
