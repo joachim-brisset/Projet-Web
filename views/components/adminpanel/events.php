@@ -3,7 +3,7 @@
 </header>
 <section id="event-container" >
     <div id="in-progress-event-container" class="container">
-        <p> En cour </p>
+        <p class="title"> En cour </p>
         <div class="result">
 
             <?php if (empty($eventInProgress)) : ?>
@@ -20,7 +20,7 @@
         </div>
     </div>
     <div id="next-event-container"  class="container">
-        <p> Prochainement </p>
+        <p class="title"> Prochainement </p>
         <div class="result">
             <?php if (empty($eventUpComing)) : ?>
                 <p> Aucun evenement prochainement </p>
@@ -36,7 +36,7 @@
         </div>
     </div>
     <div id="all-event-container"  class="container">
-        <p> Tous les evenement </p>
+        <p class="title"> Tous les evenement </p>
         <div class="container-header">
             <input name="event_name" disabled value="Titre">
             <input name="event_desc" disabled value="Description">
@@ -45,6 +45,7 @@
             <input name="event_end" disabled value="Fin">
             <input name="event_price" disabled value="Prix">
             <input name="event_place_number" disabled value="Places">
+            <input name="event_cost" disabled value="Coût">
         </div>
         <hr>
         <div class="result">
@@ -62,6 +63,7 @@
                                 <input name="event_end" type="date" value="<?= $event['end_at']?>">
                                 <input name="event_price" type="number" value="<?= $event['price'] ?>">
                                 <input name="event_place_number" type="number" value="<?= $event['place_number'] ?>">
+                                <input name="event_cost" type="number" value="<?= $event['event_cost'] ?>">
                                 <label>
                                     <img src="/img/trash-icon.svg" alt="delete">
                                     <input name="delete" type="checkbox" value="delete">
@@ -96,8 +98,8 @@
     </div>
 
     <div id="add-event-container" class="container">
-        <p> Ajouter un evenement </p>
-        <div>
+        <p class="title"> Ajouter un evenement </p>
+        <div class="header">
             <input name="event_name" disabled value="Titre">
             <input name="event_desc" disabled value="Description">
             <input name="event_place" disabled value="Lieux">
@@ -105,24 +107,27 @@
             <input name="event_end" disabled value="Fin">
             <input name="event_price" disabled value="Prix">
             <input name="event_place_number" disabled value="Places">
+            <input name="event_cost" disabled value="Coût">
         </div>
         <form class="ajax-form event-info">
-            <input name="event_name">
-            <input name="event_desc">
-            <input name="event_place">
-            <input name="event_start" type="date">
-            <input name="event_end" type="date">
-            <input name="event_price" type="number">
-            <input name="event_place_number" type="number">
+            <input autocomplete="off" name="event_name">
+            <input autocomplete="off" name="event_desc">
+            <input autocomplete="off" name="event_place">
+            <input autocomplete="off" name="event_start" type="date">
+            <input autocomplete="off" name="event_end" type="date">
+            <input autocomplete="off" name="event_price" type="number">
+            <input autocomplete="off" name="event_place_number" type="number">
+            <input autocomplete="off" name="event_cost" type="number">
             <input type="submit">
         </form>
     </div>
 
     <div id="event-stats"  class="container">
-        <p> Statistique </p>
+        <p class="title"> Statistique </p>
         <div class="result">
             <p> Nombre d'évenement : <?= sizeof($eventAll) ?> </p>
             <p> Nombre d'inscription : <?= sizeof(Registration::with([])) ?> </p>
         </div>
     </div>
 </section>
+<script defer src="/js/adminpanel-event.js"> </script>

@@ -12,8 +12,6 @@ if (!Authentication::isAuth()['auth']) header('Location: /sign-in') or die;
 Session::extendValidity();
 Authorization::allow(Authorization::STAFF);
 ?>
-
-<script defer src="/js/adminpanel-event.js"> </script>
 <body>
     <nav>
         <h1><a href="/adminpanel"> Admin Panel </a></h1>
@@ -161,7 +159,7 @@ Authorization::allow(Authorization::STAFF);
         width: 100%;
     }
 
-    #event-container > .container {
+    main section:first-of-type > .container {
         --radius: 10px;
         border-radius: var(--radius);
         background: rgba(0,0,0, 0.1);
@@ -169,7 +167,7 @@ Authorization::allow(Authorization::STAFF);
 
         box-shadow: 0 0 3px 0 black;
     }
-    #event-container > .container > p {
+    main section:first-of-type > .container > p.title {
         text-align: center;
     }
 
@@ -214,8 +212,11 @@ Authorization::allow(Authorization::STAFF);
     .ajax-form label > img {
         height: 17px;
     }
-    input[name=event_name],input[name=event_place] {
+    input[name=event_name] {
         width: 12.5%;
+    }
+    input[name=event_place] {
+        width: 7.5%;
     }
     input[name=event_start], input[name=event_end] {
         width: 10%;
@@ -223,7 +224,7 @@ Authorization::allow(Authorization::STAFF);
     input[name=event_desc] {
         width: 30%;
     }
-    input[name=event_price], input[name=event_place_number] {
+    input[name=event_price], input[name=event_place_number], input[name=event_cost] {
         width: 5%;
     }
     input[type=submit] {
@@ -241,7 +242,23 @@ Authorization::allow(Authorization::STAFF);
 
 
     /********************* Products *********************/
+    section#product-container {
+        display: grid;
+        position: relative;
+        grid-template-rows: 1fr 80px;
+        grid-template-columns: 80%;
+        grid-gap: 20px;
 
+        height: 95%;
+        width: 100%;
+    }
+
+    input[name=product_name] {
+        width: 15%
+    }
+    input[name=product_price], input[name=product_stocks], input[name=product_initial_stock], input.sold {
+        width: 5%
+    }
 
 
 </style>

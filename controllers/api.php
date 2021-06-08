@@ -4,6 +4,8 @@ require_once "../models/Event.php";
 require_once "../models/Authorization.php";
 require_once "../models/Authentication.php";
 require_once "../models/Registration.php";
+require_once "../models/Product.php";
+
 
 /* TODO: checks var types */
 
@@ -71,6 +73,7 @@ $api = [
         $params['end_at'] = $_GET['event_end'] != "" ? $_GET['event_end'] : 0;
         $params['price'] = $_GET['event_price'] != "" ? $_GET['event_price'] : 0;
         $params['place_number'] = $_GET['event_place_number'] != "" ? $_GET['event_place_number'] : 0;
+        $params['event_cost'] = $_GET['event_cost'] != "" ? $_GET['event_cost'] : 0;
 
         return ['success' => Event::add($params), 'cause' => 'sql'];
     },
@@ -95,6 +98,7 @@ $api = [
         if (isset($_GET['event_end'])) $params['end_at'] = $_GET['event_end'];
         if (isset($_GET['event_price'])) $params['price'] = $_GET['event_price'];
         if (isset($_GET['event_place_number'])) $params['place_number'] = $_GET['event_place_number'];
+        if (isset($_GET['event_cost'])) $params['event_cost'] = $_GET['event_cost'];
 
         return ['success' => Event::update(['id' => $_GET['event_id']], $params), 'cause' => 'sql'];
     },
@@ -106,7 +110,50 @@ $api = [
         if(!isset($_GET['event_id'])) return ['success' => false, 'cause' => 'no event_id'];
         return ['success' => Event::delete($_GET['event_id']), 'cause' => 'sql'];
 
-    }
+    },
+
+    'addProduct' => function() {
+        if (!Authentication::isAuth()['auth']) return ['success' => false, "cause" => "not connected"];
+        Authorization::allow(Authorization::STAFF, function() {die;});
+
+        if(!isset($_GET['product_name']) || !isset($_GET['product_price']) || !isset($_GET['product_stocks']) ||!isset($_GET['product_initial_stock'])) return ['success' => false, 'cause' => "missing parameters"];
+
+        $params = [];
+        $params['name'] = $_GET['product_name'];
+        $params['price'] = $_GET['product_price'];
+        $params['stocks'] = $_GET['product_stocks'];
+        $params['initial_stock'] = $_GET['product_initial_stock'];
+
+        return [ 'success' => Product::add($params), 'cause' => 'sql'];
+    },
+
+    'getProduct' => function() {
+        if(!isset($_GET['product_id'])) return ['success' => false, 'cause' => 'no id'];
+        return Product::withID($_GET['product_id']);
+    },
+
+    'editProduct' => function() {
+        if (!Authentication::isAuth()['auth']) return ['success' => false, "cause" => "not connected"];
+        Authorization::allow(Authorization::STAFF, function() {die;});
+
+        if (!isset($_GET['product_id']) || !(isset($_GET['product_name']) || isset($_GET['product_price']) ||isset($_GET['product_stocks']) || isset($_GET['product_initial_stock']))) return ['success' => false, 'cause' => 'missing parameters'];
+
+        $params = [];
+        if (isset($_GET["product_name"])) $params["name"] = $_GET["product_name"];
+        if (isset($_GET["product_price"])) $params["price"] = $_GET["product_price"];
+        if (isset($_GET["product_stocks"])) $params["stocks"] = $_GET["product_stocks"];
+        if (isset($_GET["product_initial_stock"])) $params["initial_stock"] = $_GET["product_initial_stock"];
+
+        return ['success' => Product::update(['id' => $_GET["product_id"]], $params), 'cause' => 'sql'];
+    },
+
+    'deleteProduct' => function() {
+        if (!Authentication::isAuth()['auth']) return ['success' => false, "cause" => "not connected"];
+        Authorization::allow(Authorization::STAFF, function() {die;});
+
+        if(!isset($_GET['product_id'])) return ['success' => false, 'cause' => 'no event_id'];
+        return ['success' => Product::delete($_GET['product_id']), 'cause' => 'sql'];
+    },
 ];
 
 if(isset($_GET['action'])) {
