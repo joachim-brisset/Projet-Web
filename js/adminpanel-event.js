@@ -3,7 +3,7 @@
     function notify() {}
 
     function updateData(element, id) {
-        fetch(`/api/getEvent?event_id=${id}`)
+        fetch(`/api/getEvent?event_id=${id}`, {credentials:'include'})
             .then( response => response.json())
             .then( data => {
                 element.querySelector("input[name=event_name]").value = data['name'];
@@ -22,7 +22,7 @@
         let formData = new FormData(this);
         if (formData.has("delete")) {
             fetch(`/api/deleteEvent?event_id=${formData.get("event_id")}`, {credentials: "include"}).then(data => data.json()).then(response => {
-                console.log(response)
+                console.log(response);
                 if(response['success']) window.location.reload(true);
             });
 
@@ -30,7 +30,7 @@
             formData.delete("delete");
             let params = Array.from(formData, ([key, value]) => `${key}=${value}`).reduce((x, y) => x + "&" + y);
 
-            fetch(`/api/editEvent?${params}`).then(data => data.json()).then(response => {
+            fetch(`/api/editEvent?${params}`, {credentials:'include'}).then(data => data.json()).then(response => {
                 notify(response['success'] ? "Successfully update data" : "Unsuccessfully update data", 2);
                 updateData(this, formData.get('event_id'));
             });
@@ -49,7 +49,7 @@
         let formData = new FormData(this);
         let params = Array.from(formData, ([key, value]) => `${key}=${value}`).reduce( (x,y) => x + "&" + y);
 
-        fetch(`/api/addEvent?${params}`).then(data => data.json()).then(response => {
+        fetch(`/api/addEvent?${params}`, {credentials:'include'}).then(data => data.json()).then(response => {
             if (response['success']) window.location.reload(true);
         })
     }
@@ -77,7 +77,7 @@
             let params = Array.from(formData, ([key, value]) => `${key}=${value}`).reduce( (x,y) => x + "&" + y);
             console.log(params)
 
-            fetch(`/api/unregisterEvent?${params}`).then(data => data.json()).then(response => {
+            fetch(`/api/unregisterEvent?${params}`, {credentials:'include'}).then(data => data.json()).then(response => {
                 if (response['success']) {
                     window.location.reload(true);
                 }

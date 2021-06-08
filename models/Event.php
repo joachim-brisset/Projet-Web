@@ -79,7 +79,7 @@ class Event {
         $keys = []; $values= [];
         foreach ($params as $key => $value) {
             array_push($keys, $key);
-            array_push($values, "'$value'");
+            array_push($values, "'".addslashes($value)."'");
         }
 
         $req = $db->prepare("INSERT INTO events (". implode(',', $keys) .") VALUES (". implode(',', $values) .")");
