@@ -22,6 +22,22 @@
                     $all_profits += ($products['price']*($products['initial_stock']-$products['stocks']));
                 }
             ?>
+            <br><p>Profits sur les inscriptions :</p>
+            <?php 
+                $staff = 0;
+                $membre = 0;
+                foreach ($allUsers as $user) {
+                    if ($user['role_id'] == 1) {
+                        $membre += 1;
+                    }
+                    elseif ($user['role_id'] == 2) {
+                        $staff += 1;
+                    }
+                }
+                echo $membre." simple(s) membre(s) : ".($membre_price*$membre)."€<br>";
+                echo $staff." membre(s) du staff : ".($staff_price*$staff)."€<br>";
+                $all_profits += (($membre_price*$membre)+($staff_price*$staff));
+            ?>
             <br><p>Total des recettes sur la période :</p>
             <?php echo $all_profits."€"; ?>
         </div>
@@ -53,8 +69,8 @@
     <div id="event-stats"  class="container">
         <p> Retour sur la période </p><br>
         <div class="result">
-            <p> Solde au début de la période : 10 000 € </p>
-            <p> Solde aujourd'hui :  <?php echo (10000-$all_expenses+$all_profits)."€"; ?></p>
+            <p> Solde au début de la période : 15 000 € </p>
+            <p> Solde aujourd'hui :  <?php echo (15000-$all_expenses+$all_profits)."€"; ?></p>
         </div>
     </div>
 </section>

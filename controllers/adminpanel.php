@@ -5,6 +5,7 @@ require_once "../models/Authorization.php";
 require_once "../models/Event.php";
 require_once "../models/Product.php";
 require_once "../models/Registration.php";
+require_once "../models/User.php";
 
 Session::appendToHistory();
 if (!Authentication::isAuth()['auth']) header('Location: /sign-in') or die;
@@ -72,7 +73,13 @@ Authorization::allow(Authorization::STAFF);
         elseif ($_GET['page'] == 'budget'):
             $eventAll = Event::all();
             $allProducts = Product::all();
+            $allUsers = User::all();
+            $membre_price = Roles::withRole(Authorization::MEMBER)['price'];
+            $staff_price = Roles::withRole(Authorization::STAFF)['price'];
             require "../views/components/adminpanel/budget.php";
+        elseif ($_GET['page'] == 'users'):
+            $allUsers = User::all();
+            require "../views/components/adminpanel/users.php";
         endif; ?>
     </main>
 </body>
@@ -187,7 +194,6 @@ Authorization::allow(Authorization::STAFF);
         grid-row: 4/5;
         grid-column: 1/3;
     }
-
     .event , .container-header{
         position: relative;
         height: 20px;
@@ -238,8 +244,15 @@ Authorization::allow(Authorization::STAFF);
     .user-info > input[type=submit] {
         width: 20px;
     }
-    /**************************************************/
+    /********************** Users ***********************/
 
+    input[name=user_username], input[name=user_firstname], input[name=user_lastname], input[name=user_mail], input[name=user_gender], input[name=user_birth_day],                   input[name=user_jobs], input[name=user_street_number], input[name=user_street], input[name=user_cp], input[name=user_city], input[name=user_country],                   input[name=user_role_id], select[name=user_role_id], select[name=user_gender] {
+        width: 6.6%;
+    }
+            
+    #add-user-container {
+        margin-top: 20px;
+    }
 
     /********************* Products *********************/
     section#product-container {

@@ -175,6 +175,82 @@ $api = [
         if(!isset($_GET['product_id'])) return ['success' => false, 'cause' => 'no event_id'];
         return ['success' => Product::delete($_GET['product_id']), 'cause' => 'sql'];
     },
+    
+    'addUser' => function() {
+        if (!Authentication::isAuth()['auth']) return ['success' => false, "cause" => "not connected"];
+        Authorization::allow(Authorization::STAFF, function() {die;});
+
+        if (!isset($_GET['user_username']) || !isset($_GET['user_mail']) || !isset($_GET['user_firstname']) || !isset($_GET['user_lastname']) || !isset($_GET['user_gender']) || !isset($_GET['user_birth_day']) || !isset($_GET['user_jobs']) || !isset($_GET['user_street_number']) || !isset($_GET['user_street']) || !isset($_GET['user_cp']) || !isset($_GET['user_city']) || !isset($_GET['user_country']) || !isset($_GET["user_role_id"])) return ['success' => false, 'cause' => "missing parameters"];
+
+        $params = [];
+        $params['username'] = $_GET['user_username'];
+        $params['mail'] = $_GET['user_mail'];
+        $params['firstname'] = $_GET['user_firstname'];
+        $params['lastname'] = $_GET['user_lastname'];
+        if ($_GET["user_role_id"] == "membre") {
+            $params['role_id'] = 1;
+        }
+        elseif ($_GET["user_role_id"] == "staff") {
+            $params['role_id'] = 2;
+        }
+        elseif ($_GET["user_role_id"] == "aucun rôle") {
+            $params['role_id'] = NULL;
+        }
+        $params['gender'] = $_GET['user_gender'];
+        $params['jobs'] = $_GET['user_jobs'];
+        $params['street_number'] = $_GET['user_street_number'];
+        $params['street'] = $_GET['user_street'];
+        $params['cp'] = $_GET['user_cp'];
+        $params['city'] = $_GET['user_city'];
+        $params['country'] = $_GET['user_country'];
+        $params['birth_day'] = $_GET['user_birth_day'];
+
+        return [ 'success' => User::add($params), 'cause' => 'sql'];
+    },
+
+    'getUser' => function() {
+        if(!isset($_GET['user_id'])) return ['success' => false, 'cause' => 'no id'];
+        return User::withID($_GET['user_id']);
+    },
+
+    'editUser' => function() {
+        if (!Authentication::isAuth()['auth']) return ['success' => false, "cause" => "not connected"];
+        Authorization::allow(Authorization::STAFF, function() {die;});
+
+        if (!isset($_GET['user_id']) || !isset($_GET["user_role_id"]) || !(isset($_GET['user_username']) || isset($_GET['user_mail']) || isset($_GET['user_firstname']) || isset($_GET['user_lastname']) || isset($_GET['user_gender']) || isset($_GET['user_birth_day']) || isset($_GET['user_jobs']) || isset($_GET['user_street_number']) || isset($_GET['user_street']) || isset($_GET['user_cp']) || isset($_GET['user_city']) || isset($_GET['user_country']))) return ['success' => false, 'cause' => "missing parameters"];
+        
+        $params = [];
+        if (isset($_GET["user_username"])) $params['username'] = $_GET['user_username'];
+        if (isset($_GET["user_mail"])) $params['mail'] = $_GET['user_mail'];
+        if (isset($_GET["user_firstname"])) $params['firstname'] = $_GET['user_firstname'];
+        if (isset($_GET["user_lastname"])) $params['lastname'] = $_GET['user_lastname'];
+        if (isset($_GET["user_role_id"])) {
+            if ($_GET["user_role_id"] == "membre") {
+                $params['role_id'] = 1;
+            }
+            elseif ($_GET["user_role_id"] == "staff") {
+                $params['role_id'] = 2;
+            }
+        }
+        if (isset($_GET["user_gender"])) $params['gender'] = $_GET['user_gender'];
+        if (isset($_GET["user_jobs"])) $params['jobs'] = $_GET['user_jobs'];
+        if (isset($_GET["user_street_number"])) $params['street_number'] = $_GET['user_street_number'];
+        if (isset($_GET["user_street"])) $params['street'] = $_GET['user_street'];
+        if (isset($_GET["user_cp"])) $params['cp'] = $_GET['user_cp'];
+        if (isset($_GET["user_city"])) $params['city'] = $_GET['user_city'];
+        if (isset($_GET["user_country"])) $params['country'] = $_GET['user_country'];
+        if (isset($_GET["user_birth_day"])) $params['birth_day'] = $_GET['user_birth_day'];
+
+        return ['success' => User::update(['id' => $_GET["user_id"]], $params), 'cause' => 'sql', 'test' => $params];
+    },
+
+    'deleteUser' => function() {
+        if (!Authentication::isAuth()['auth']) return ['success' => false, "cause" => "not connected"];
+        Authorization::allow(Authorization::STAFF, function() {die;});
+
+        if(!isset($_GET['user_id'])) return ['success' => false, 'cause' => 'no event_id'];
+        return ['success' => User::delete($_GET['user_id']), 'cause' => 'sql'];
+    },
 ];
 
 if(isset($_GET['action'])) {

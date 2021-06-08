@@ -6,7 +6,7 @@ require_once "Session.php";
 
 class Authorization {
 
-    const MEMBER = 'member'; /** @var string <p> represent member permission</p> */
+    const MEMBER = 'membre'; /** @var string <p> represent member permission</p> */
     const STAFF = 'staff'; /** @var string <p> represent staff permission</p> */
 
     /**
