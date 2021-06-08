@@ -90,7 +90,9 @@ Authorization::allow(Authorization::STAFF);
 
     nav {
         position: absolute;
-        width: 350px;
+        max-width: 350px;
+        width: 20%;
+        min-width: 250px;
         height: 100vh;
 
         padding-top: 30px;
@@ -130,7 +132,9 @@ Authorization::allow(Authorization::STAFF);
 
     main {
         position: absolute;
-        left: 350px;
+        width: 80%;
+        max-width: calc(100% - 250px);
+        min-width: calc(100% - 350px);
         right: 0;
         height: 100vh;
 
@@ -143,6 +147,7 @@ Authorization::allow(Authorization::STAFF);
         text-align: center;
     }
 
+    /************** Events ********************/
     section#event-container {
         position: relative;
         display: grid;
@@ -200,9 +205,18 @@ Authorization::allow(Authorization::STAFF);
         width: 20px;
     }
 
-    .ajax-form input,.ajax-form button {height: 20px;}
-    input[name=event_name],input[name=event_place], input[name=event_start], input[name=event_end] {
+    .ajax-form > * {height: 20px; vertical-align: middle}
+    .ajax-form label {
+        margin: 0 5px;
+    }
+    .ajax-form label > img {
+        height: 17px;
+    }
+    input[name=event_name],input[name=event_place] {
         width: 12.5%;
+    }
+    input[name=event_start], input[name=event_end] {
+        width: 10%;
     }
     input[name=event_desc] {
         width: 30%;
@@ -221,6 +235,10 @@ Authorization::allow(Authorization::STAFF);
     .user-info > input[type=submit] {
         width: 20px;
     }
+    /**************************************************/
+
+
+    /********************* Products *********************/
 
 
 

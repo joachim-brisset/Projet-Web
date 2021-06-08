@@ -94,5 +94,14 @@ class Event {
         return $req->execute();
     }
 
+    public static function delete(int $id)
+    {
+        $db = new PDO('mysql:host=localhost;dbname=' . Variables::MYSQL_DATABASE, Variables::MYSQL_USER , Variables::MYSQL_PASS);
+        $req = $db->prepare("DELETE FROM events WHERE id = :id");
+        $req->setFetchMode(PDO::FETCH_ASSOC);
+        $req->bindParam(":id", $id, PDO::PARAM_INT);
+        return $req->execute();
+    }
+
 
 }

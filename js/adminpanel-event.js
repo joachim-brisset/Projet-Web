@@ -20,12 +20,21 @@
         event.preventDefault();
 
         let formData = new FormData(this);
-        let params = Array.from(formData, ([key, value]) => `${key}=${value}`).reduce( (x,y) => x + "&" + y);
+        if (formData.has("delete")) {
+            fetch(`/api/deleteEvent?event_id=${formData.get("event_id")}`, {credentials: "include"}).then(data => data.json()).then(response => {
+                console.log(response)
+                if(response['success']) window.location.reload(true);
+            });
 
-        fetch(`/api/editEvent?${params}`).then(data => data.json()).then(response => {
-            notify(response['success'] ? "Successfully update data" : "Unsuccessfully update data", 2);
-            updateData(this, formData.get('event_id'));
-        });
+        } else {
+            formData.delete("delete");
+            let params = Array.from(formData, ([key, value]) => `${key}=${value}`).reduce((x, y) => x + "&" + y);
+
+            fetch(`/api/editEvent?${params}`).then(data => data.json()).then(response => {
+                notify(response['success'] ? "Successfully update data" : "Unsuccessfully update data", 2);
+                updateData(this, formData.get('event_id'));
+            });
+        }
 
     }
 

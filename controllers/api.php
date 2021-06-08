@@ -96,7 +96,16 @@ $api = [
         if (isset($_GET['event_price'])) $params['price'] = $_GET['event_price'];
         if (isset($_GET['event_place_number'])) $params['place_number'] = $_GET['event_place_number'];
 
-        return ['test'=> $_GET['event_end'],'success' => Event::update(['id' => $_GET['event_id']], $params), 'cause' => 'sql'];
+        return ['success' => Event::update(['id' => $_GET['event_id']], $params), 'cause' => 'sql'];
+    },
+
+    'deleteEvent' => function() {
+        if (!Authentication::isAuth()['auth']) return ['success' => false, "cause" => "not connected"];
+        Authorization::allow(Authorization::STAFF, function() {die;});
+
+        if(!isset($_GET['event_id'])) return ['success' => false, 'cause' => 'no event_id'];
+        return ['success' => Event::delete($_GET['event_id']), 'cause' => 'sql'];
+
     }
 ];
 

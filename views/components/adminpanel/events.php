@@ -62,6 +62,10 @@
                                 <input name="event_end" type="date" value="<?= $event['end_at']?>">
                                 <input name="event_price" type="number" value="<?= $event['price'] ?>">
                                 <input name="event_place_number" type="number" value="<?= $event['place_number'] ?>">
+                                <label>
+                                    <img src="/img/trash-icon.svg" alt="delete">
+                                    <input name="delete" type="checkbox" value="delete">
+                                </label>
                                 <input type="submit" value="editer">
                         </form>
                         <button class="expand-button"> + </button>
