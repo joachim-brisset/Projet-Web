@@ -3,26 +3,58 @@
 </header>
 <section id="event-container" >
     <div id="in-progress-event-container" class="container">
-        <p> Recettes </p>
+        <p> Recettes </p><br>
+            <?php $all_profits = 0; ?>
         <div class="result">
-            <p>Pour chaque événement, on récupère le nombre d'inscrits avec le prix de la place</p>
-            <p>On ajoute une colonne "stock initial" dans la table products, qui ne change pas lorsque l'on vend un produit</p>
-            <p>Pour chaque produit, on compare le stock restant avec le stock initial pour connaître le nombre de vente que l'on multiplie par le prix de vente</p>
+            
+            <p>Profits sur les événements :</p>
+            <?php
+                foreach ($eventAll as $events) {
+                    $registrations = Registration::with(['event_id' => $events['id']]);
+                    echo $events['name']." : ".sizeof($registrations)." inscription(s) => ".($events['price']*sizeof($registrations))."€<br>";
+                    $all_profits += ($events['price']*sizeof($registrations));
+                }
+            ?>
+            <br><p>Profits sur la boutique :</p>
+            <?php
+                foreach ($allProducts as $products) {
+                    echo $products['name']." : ".($products['price']*($products['initial_stock']-$products['stocks']))."€ (".($products['initial_stock']-$products['stocks'])." article(s) vendu(s))<br>";
+                    $all_profits += ($products['price']*($products['initial_stock']-$products['stocks']));
+                }
+            ?>
+            <br><p>Total des recettes sur la période :</p>
+            <?php echo $all_profits."€"; ?>
         </div>
     </div>
     <div id="next-event-container"  class="container">
-        <p> Dépenses </p>
+        <p> Dépenses </p><br>
+            <?php $all_expenses = 0; ?>
         <div class="result">
-            <p>On rajoute une colonne "coût" dans les événements pour l'entrer dans les dépenses</p>
-            <p>Pour chaque produit, on dépense 3/4 de son prix de revente pour l'acheter initialement</p>
+            
+            <p>Dépenses sur les événements :</p>
+            <?php
+                foreach ($eventAll as $events) {
+                    echo $events['name']." : ".$events['event_cost']."€<br>";
+                    $all_expenses += $events['event_cost'];
+                }
+            ?>
+            <br><p>Dépenses sur la boutique :</p>
+            <?php
+                foreach ($allProducts as $products) {
+                    echo $products['name']." : ".($products['price']*3/4)."€ (nombre d'articles : ".$products['initial_stock'].")<br>";
+                    $all_expenses += ($products['price']*3/4*$products['initial_stock']);
+                }
+            ?>
+            <br><p>Total des dépenses sur la période :</p>
+            <?php echo $all_expenses."€"; ?>
         </div>
     </div>
 
     <div id="event-stats"  class="container">
-        <p> Retour sur la période </p>
+        <p> Retour sur la période </p><br>
         <div class="result">
             <p> Solde au début de la période : 10 000 € </p>
-            <p> Solde aujourd'hui :  </p>
+            <p> Solde aujourd'hui :  <?php echo (10000-$all_expenses+$all_profits)."€"; ?></p>
         </div>
     </div>
 </section>

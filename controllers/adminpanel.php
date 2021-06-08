@@ -72,6 +72,8 @@ Authorization::allow(Authorization::STAFF);
 
             require "../views/components/adminpanel/products.php";
         elseif ($_GET['page'] == 'budget'):
+            $eventAll = Event::all();
+            $allProducts = Product::all();
             require "../views/components/adminpanel/budget.php";
         endif; ?>
     </main>
