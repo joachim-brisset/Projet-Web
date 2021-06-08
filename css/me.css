@@ -33,7 +33,7 @@ main {
     margin-left: 3%;
 }
 
-#data, #calendar {
+#data, #calendar{
     float: left;
 }
 
@@ -83,4 +83,15 @@ div#data{
     padding: 50px;
     border-radius: 50px;
     
+}
+
+#data {
+    order: 1;
+}
+#logout {
+    order: 2;
+    align-self: flex-end;
+}
+#calendar {
+    order: 3;
 }

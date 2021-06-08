@@ -75,6 +75,13 @@ include "../controllers/me_sql.php";
                         }
                     ?>
                 </div>
+
+                <div id="logout" class="change_button">
+                    <a href="/me?action=logout">
+                        Se deconnecter
+                    </a>
+                </div>
+
             </div>
                 
         </main>
