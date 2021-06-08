@@ -12,6 +12,7 @@ RewriteRule ^complete_data$ /controllers/complete_data [L]
 RewriteRule ^event$ /controllers/event [L]
 RewriteRule ^store$ /controllers/store [L]
 RewriteRule ^product$ /controllers/product/ [L,QSA]
+RewriteRule ^news$ /controllers/news [L]
 
 RewriteRule ^adminpanel/?(.*)$ /controllers/adminpanel?page=$1 [L]
 
