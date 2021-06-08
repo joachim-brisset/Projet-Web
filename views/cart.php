@@ -1,5 +1,5 @@
 <?php
-
+require_once "../models/Product.php";
 include_once("fonctions-panier.php");
 
 $erreur = false;
@@ -35,7 +35,7 @@ if($action !== null)
 if (!$erreur){
    switch($action){
       Case "ajout":
-         ajouterArticle($l,$q,$p);
+         ajouterArticle($l,$q);
          break;
 
       Case "suppression":
@@ -82,29 +82,26 @@ if (!$erreur){
     {
        $nbArticles=count($_SESSION['panier']['CodeProduit']);
        if ($nbArticles <= 0)
-       echo "<tr><td>Votre panier est vide </td></tr>";
+       echo "<p>Votre panier est vide </p>";
        else
        {
-          for ($i=0 ;$i < $nbArticles ; $i++)
-          {
-             echo "<tr>";
-             echo "<td>".htmlspecialchars($_SESSION['panier']['CodeProduit'][$i])."</ td><br>";
-             echo "<td><input type=\"text\" size=\"4\" name=\"q[]\" value=\"".htmlspecialchars($_SESSION['panier']['NbProduit'][$i])."\"/></td>";
-             echo "<td>".htmlspecialchars($_SESSION['panier']['prixProduit'][$i])."</td><br>";
-             echo "<td><a href=\"".htmlspecialchars("cart?action=suppression&l=".rawurlencode($_SESSION['panier']['CodeProduit'][$i]))."\">Supprimer article</a></td><br>";
-             echo "</tr>";
-          }
+          for ($i=0 ;$i < $nbArticles ; $i++): ?>
+            <div class="cart-item">
+                <p><?= Product::withID($_SESSION['panier']['CodeProduit'][$i])['name'] ?></p>
+                <form class="productForm">
+                    <input hidden type="number" name="productId" value="<?= htmlspecialchars($_SESSION['panier']['CodeProduit'][$i]) ?>">
+                    <input type="number" name="qte" value=<?=$_SESSION['panier']['NbProduit'][$i]?>>
+                    <input type="submit" value="edit">
+                </form>
 
-          echo "<tr><td colspan=\"2\"> </td>";
-          echo "<td colspan=\"2\">";
-          echo "Total : ".MontantGlobal();
-          echo "</td></tr>";
+                <p><?=htmlspecialchars($_SESSION['panier']['prixProduit'][$i]) ?> € </p>
+                <a href="<?=htmlspecialchars("cart?action=suppression&l=".rawurlencode($_SESSION['panier']['CodeProduit'][$i]))?> ">Supprimer article</a>
+            </div>
+          <?php endfor;
 
-          echo "<tr><td colspan=\"4\">";
+          echo "<p>Total : <span id='CartAmount'>".MontantGlobal() . "</span></p>";
           echo "<input type=\"submit\" value=\"Rafraichir\"/>";
           echo "<input type=\"hidden\" name=\"action\" value=\"refresh\"/>";
-
-          echo "</td></tr>";
        }
     }
     $CodeProduit=1;
@@ -123,3 +120,4 @@ if (!$erreur){
 
 </body>
 <script defer src="/js/supprimerPanier.js"></script>
+<script defer src="/js/modifierQtePanier.js"></script>

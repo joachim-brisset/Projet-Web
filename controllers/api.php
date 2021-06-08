@@ -59,12 +59,21 @@ $api = [
     'addProductToCart' => function()  {
         if (!Authentication::isAuth()['auth']) return ['success' => false, 'cause' => "not auth"];
         if(!isset($_GET["ProductId"])||!isset($_GET["qqte"])) return['success' => false , 'cause' => "missing parameters"];
-        return['success'=>ajouterArticle($_GET["ProductId"],$_GET["qqte"])];
+        return ['success'=>ajouterArticle($_GET["ProductId"],$_GET["qqte"])];
     },
     'clearCart' => function () {
         if (!Authentication::isAuth()['auth']) return ['success' => false, 'cause' => "not auth"];
         supprimePanier();
         return ['success' => true];
+    },
+    'changeProductQuantity' => function() {
+        if (!Authentication::isAuth()['auth']) return ['success' => false, 'cause' => "not auth"];
+        if(!isset($_GET["productId"])||!isset($_GET["qte"])) return['success' => false , 'cause' => "missing parameters"];
+        return ['success' => modifierQTeArticle($_GET["productId"], $_GET["qte"])];
+    },
+    'getCartAmount' => function() {
+        if (!Authentication::isAuth()['auth']) return ['success' => false, 'cause' => "not auth"];
+        return ['success' => true, "value" => MontantGlobal()];
     },
 
     'getAllEvent' => function() {

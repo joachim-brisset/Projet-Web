@@ -50,7 +50,7 @@ function ajouterArticle($CodeProduit, $NbProduit){
 /**
  * Modifie la quantité d'un article
  */
-function modifierQTeArticle($CodeProduit, $NbProduit){
+function modifierQTeArticle($CodeProduit,$NbProduit){
    //Si le panier existe
    if (creationPanier() && !isVerrouille())
    {
@@ -66,9 +66,11 @@ function modifierQTeArticle($CodeProduit, $NbProduit){
       }
       else
       supprimerArticle($CodeProduit);
+      return true;
    }
    else
    echo "Un problème est survenu veuillez contacter l'administrateur du site.";
+   return false;
 }
 
 /**
