@@ -22,8 +22,10 @@
     <title>Basket Passion | Products</title>
 </head>
 
-<main>
-
+<main>  
+    <a href="/cart">
+        <ion-icon name="cart-outline" class="iconCart" href="cart.php"></ion-icon>
+    </a>
     <body class="fond">
     <?php include '../controllers/header.php' ?>
     <section id="produit">
@@ -51,21 +53,38 @@
                     if($produit=='Supraw'){
                         echo '<h1> Ballon de basket "Supraw"</h1><br>
                         <p class="price">400,00€</p>';
+                        $CodeProduit=1;
+                        $NbProduit=1;
+                        $prixProduit=400;
                     }
                     if($produit=='Lakers'){
                         echo '<h1> Ballon de basket "Lakers"</h1><br>
                         <p class="price">50,00€</p>';
+                        $CodeProduit=2;
+                        $NbProduit=1;
+                        $prixProduit=50;
                     }
                     if($produit=='Panier'){
                         echo '<h1> Panier Chinatown market</h1><br>
                         <p class="price">70,00€</p>';
+                        $CodeProduit=3;
+                        $NbProduit=1;
+                        $prixProduit=70;
                     }
 
                 ?>
             
             <p>Taxes incluses. Frais d'expédition calculés lors du passage à la caisse.</p>
+                
 
-            <button class="boutonPan"><b>Ajouter au panier</b></button>
+            <form id="productForm">
+                <label>Quantité
+                    <input type="number" name="qqte" value=1>
+                </label>
+                <input hidden name="ProductId" value=<?php echo $CodeProduit ?>>
+                <input type="submit" class="boutonPan" onclick="ajouterArticle($CodeProduit, $NbProduit, $prixProduit)" id='ajouter'><b>Ajouter au panier</b></input>
+            </form>
+            
 
         </div>
         <div class="desciption">

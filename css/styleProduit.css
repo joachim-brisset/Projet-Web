@@ -209,4 +209,10 @@ body:before {
     background-size: cover;
 }
 
-
+.iconCart{
+    position: absolute;
+    font-size: 50px;
+    margin-top: 80px;
+    right: 3%;
+    cursor: pointer;
+}

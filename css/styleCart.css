@@ -1,0 +1,10 @@
+.panier{
+    width: 500px;
+    height: 800px;
+    margin: auto;
+    padding: 30px;
+    border: 1px solid #494545;
+    background: #6f439e;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    border-radius: 10px;
+}

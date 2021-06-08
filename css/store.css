@@ -137,3 +137,11 @@ main{
     background: #99048A url(/img/background.svg);
     background-size: cover;
 }
+
+.iconCart{
+    position: absolute;
+    font-size: 50px;
+    margin-top: 10px;
+    right: 3%;
+    cursor: pointer;
+}

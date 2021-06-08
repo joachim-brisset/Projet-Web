@@ -15,6 +15,7 @@ RewriteRule ^product$ /controllers/product/ [L,QSA]
 RewriteRule ^news$ /controllers/news [L]
 RewriteRule ^article$ /controllers/article [L]
 RewriteRule ^result_user$ /controllers/result_user [L]
+RewriteRule ^cart$ /controllers/cart [L]
 
 RewriteRule ^adminpanel/?(.*)$ /controllers/adminpanel?page=$1 [L]
 

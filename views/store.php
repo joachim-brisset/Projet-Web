@@ -20,7 +20,13 @@
 
 <?php include '../controllers/header.php' ?>
 <main>
-    <h2 class="section-title">Store</h2>
+    <a href="/cart">
+        <ion-icon name="cart-outline" class="iconCart" href="cart.php"></ion-icon>
+    </a>
+    <h2 class="section-title">Store</h2>    
+
+    
+
     <div class="list-product">
 
         <div class="first-row">

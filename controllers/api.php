@@ -5,6 +5,7 @@ require_once "../models/Authorization.php";
 require_once "../models/Authentication.php";
 require_once "../models/Registration.php";
 require_once "../models/Product.php";
+require_once "../views/fonctions-panier.php";
 
 
 /* TODO: checks var types */
@@ -53,6 +54,12 @@ $api = [
                 return ['success' => false, 'cause' => 'Full'];
             }
         }
+    },
+
+    'addProductToCart' => function()  {
+        if (!Authentication::isAuth()['auth']) return ['success' => false, 'cause' => "not auth"];
+        if(!isset($_GET["ProductId"])||!isset($_GET["qqte"])) return['success' => false , 'cause' => "missing parameters"];
+        return['success'=>ajouterArticle($_GET["ProductId"],$_GET["qqte"])];
     },
 
     'getAllEvent' => function() {
