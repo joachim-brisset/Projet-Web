@@ -3,7 +3,7 @@
 require_once "../models/me_sql.php";
 require_once "../models/User.php";
 
-Session::appendToHistory();
+
 if (Authentication::isAuth()['auth']) {
     if(!User::isComplete($_SESSION[Session::ID])) header('Location: /complete_data');
     Session::extendValidity();
