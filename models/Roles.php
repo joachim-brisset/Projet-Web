@@ -7,6 +7,7 @@ require_once "../variables.php";
 
      const MEMBER = 'membre'; /** @var string <p> represent member Role name</p> */
      const STAFF = 'staff'; /** @var string <p> represent staff Role name</p> */
+     const STAFF2 = 'staff2'; /** @var string <p> represent staff2 Role name</p> */
 
 
      /**

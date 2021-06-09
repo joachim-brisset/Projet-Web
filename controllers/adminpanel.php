@@ -43,6 +43,7 @@ switch($_GET['page']) {
         break;
 
     case 'budget':
+        Authorization::allow(Roles::STAFF2, function() {die;});
         $eventAll = Event::all();
         $allProducts = Product::all();
         $allUsers = User::all();
