@@ -4,6 +4,8 @@ require_once "../models/Event.php";
 require_once "../models/Registration.php";
 require_once "../models/Authentication.php";
 
+if (Authentication::isAuth()['auth']) Session::extendValidity();
+
 $event = Event::withID($_GET['event_id']);
 $registrationNumber = sizeof(Registration::with(['event_id' => $event['id']]));
 

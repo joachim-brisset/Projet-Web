@@ -57,6 +57,8 @@ class Session
      * @return mixed <p> return the url of the last page viewed ans stored </p>
      */
     static function popHistory() {
+        if(session_status() == PHP_SESSION_NONE) session_start();
+
         $array = $_SESSION[Session::HISTORY] ?? [];
         return array_pop($array);
     }

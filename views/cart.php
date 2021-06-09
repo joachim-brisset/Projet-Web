@@ -101,18 +101,11 @@ if (!$erreur){
                       <input type="submit" value="Rafraichir"/>
                       <input type="hidden" name="action" value="refresh"/>
                    <?php endif;
-                endif;
-
-                /*
-                $CodeProduit=1;
-                $NbProduit=1;
-                $prixProduit=50;
-                */
-
-                ?>
+                endif; ?>
                 <button id="clearCart-but"> Vider le panier</button>
-
             </div>
+
+            <a href="<?= $lastUrl ?>" id="go-back"> Retour </a>
         </main>
     </body>
     <script defer src="/js/supprimerPanier.js"></script>

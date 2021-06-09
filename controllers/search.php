@@ -1,5 +1,8 @@
 <?php
 require_once "../Variables.php";
+require_once "../models/Authentication.php";
+
+if (Authentication::isAuth()['auth']) Session::extendValidity();
 
 if($_SERVER['REQUEST_METHOD'] == "POST" || !isset($_GET['search'])) {
     header('Location: /');

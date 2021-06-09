@@ -1,5 +1,11 @@
 <?php
 
+require_once "../models/Session.php";
+require_once "../models/Authentication.php";
+
+Session::appendToHistory();
+if (Authentication::isAuth()['auth']) Session::extendValidity();
+
 if ($_GET["product_id"] == "1") {
     $img1 = "../img/qdqzdqdqzdqz.png";
     $img2 = "../img/qdqzdqdqzdqz.png";
