@@ -1,13 +1,13 @@
 <header>
-    <p> Evenements </p>
+    <p> Evénements </p>
 </header>
 <section id="event-container" >
     <div id="in-progress-event-container" class="container">
-        <p class="title"> En cour </p>
+        <p class="title"> En cours </p>
         <div class="result">
 
             <?php if (empty($eventInProgress)) : ?>
-                <p> Aucun evenement en cour </p>
+                <p> Aucun événement en cours </p>
             <?php else:
                 foreach ($eventInProgress as $event): ?>
                     <div class="event">
@@ -23,7 +23,7 @@
         <p class="title"> Prochainement </p>
         <div class="result">
             <?php if (empty($eventUpComing)) : ?>
-                <p> Aucun evenement prochainement </p>
+                <p> Aucun événement prochainement </p>
             <?php else:
                 foreach ($eventUpComing as $event): ?>
                     <div class="event">
@@ -36,7 +36,7 @@
         </div>
     </div>
     <div id="all-event-container"  class="container">
-        <p class="title"> Tous les evenement </p>
+        <p class="title"> Tous les événements </p>
         <div class="container-header">
             <input name="event_name" disabled value="Titre">
             <input name="event_desc" disabled value="Description">
@@ -50,7 +50,7 @@
         <hr>
         <div class="result">
             <?php if (empty($eventAll)) : ?>
-                <p> Aucun evenement </p>
+                <p> Aucun événement </p>
             <?php else: ?>
                 <?php foreach ($eventAll as $event): ?>
                     <div class="event">
@@ -73,7 +73,7 @@
                         <button class="expand-button"> + </button>
                         <div class="user-container">
                             <?php $registrations = Registration::with(['event_id' => $event['id']]) ?>
-                            <p> nombre d'inscription : <?= sizeof($registrations)?></p>
+                            <p> nombre d'inscriptions : <?= sizeof($registrations)?></p>
                             <input disabled value="USERNAME">
                             <input disabled value="MAIL">
                             <input disabled value="GENDER">
@@ -98,7 +98,7 @@
     </div>
 
     <div id="add-event-container" class="container">
-        <p class="title"> Ajouter un evenement </p>
+        <p class="title"> Ajouter un événement </p>
         <div class="header">
             <input name="event_name" disabled value="Titre">
             <input name="event_desc" disabled value="Description">
@@ -125,8 +125,8 @@
     <div id="event-stats"  class="container">
         <p class="title"> Statistique </p>
         <div class="result">
-            <p> Nombre d'évenement : <?= sizeof($eventAll) ?> </p>
-            <p> Nombre d'inscription : <?= sizeof(Registration::with([])) ?> </p>
+            <p> Nombre d'événements : <?= sizeof($eventAll) ?> </p>
+            <p> Nombre d'inscriptions : <?= sizeof(Registration::with([])) ?> </p>
         </div>
     </div>
 </section>

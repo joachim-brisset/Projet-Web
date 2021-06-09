@@ -3,7 +3,7 @@
 </header>
 <section id="product-container">
     <div id="all-products-container" class="container">
-        <p class="title"> tout les produits </p>
+        <p class="title"> Tous les produits </p>
         <div class="header">
             <input disabled name="product_name" value="Nom">
             <input disabled name="product_price" value="Prix">
@@ -31,7 +31,7 @@
             </div>
     <?php $soldSum += $sold;
     endforeach; ?>
-            <p> Vente total : <?= $soldSum ?> </p>
+            <p> Ventes totales : <?= $soldSum ?> articles </p>
         </div>
     </div>
 

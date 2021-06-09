@@ -3,7 +3,7 @@
 </header>
 <section id="event-container" >
     <div id="in-progress-event-container" class="container">
-        <p> Recettes </p><br>
+        <p class="title"> Recettes </p><br>
             <?php $all_profits = 0; ?>
         <div class="result">
             
@@ -43,7 +43,7 @@
         </div>
     </div>
     <div id="next-event-container"  class="container">
-        <p> Dépenses </p><br>
+        <p class="title"> Dépenses </p><br>
             <?php $all_expenses = 0; ?>
         <div class="result">
             
@@ -67,7 +67,7 @@
     </div>
 
     <div id="event-stats"  class="container">
-        <p> Retour sur la période </p><br>
+        <p class="title"> Retour sur la période </p><br>
         <div class="result">
             <p> Solde au début de la période : 15 000 € </p>
             <p> Solde aujourd'hui :  <?php echo (15000-$all_expenses+$all_profits)."€"; ?></p>
