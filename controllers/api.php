@@ -34,7 +34,7 @@ $api = [
             Authorization::allow(Roles::STAFF, function () {die;});
             return ['success' => Registration::register($_GET['event_id'], $_GET['user_id']), 'cause' => 'sql'];
         } else {
-            if (Event::withID($_GET['event_id'])['place_number'] > sizeof(Registration::with(['event_id' => $_GET['event_id']]))) {
+            if (Event::withID($_GET['event_id'])['place_number'] == 0 || Event::withID($_GET['event_id'])['place_number'] > sizeof(Registration::with(['event_id' => $_GET['event_id']]))) {
                 return ['success' => Registration::register($_GET['event_id'], $_SESSION[Session::ID]), 'cause' => 'sql'];
             } else {
                 return ['success' => false, 'cause' => 'Full'];
