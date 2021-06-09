@@ -1,8 +1,12 @@
 <?php
 require_once "../models/Roles.php";
 require_once "../models/Authentication.php";
+require_once "../models/User.php";
 
-if (Authentication::isAuth()['auth']) Session::extendValidity();
+if (Authentication::isAuth()['auth']){
+    if(!User::isComplete($_SESSION[Session::ID])) header('Location: /complete_data');
+    Session::extendValidity();
+}
 
 try
     {

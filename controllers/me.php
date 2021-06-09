@@ -2,6 +2,7 @@
 
 require_once "../models/Session.php";
 require_once "../models/Authentication.php";
+require_once "../models/User.php";
 include "../models/me_sql.php";
 
 if (isset($_GET['action']) && $_GET['action'] == 'logout') {
@@ -15,6 +16,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'logout') {
 
 Session::appendToHistory();
 if (Authentication::isAuth()['auth']) {
+    Session::extendValidity();
     Session::extendValidity();
 } else {
     header("Location: /sign-in") or die;

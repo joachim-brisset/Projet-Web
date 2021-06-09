@@ -1,8 +1,12 @@
 <?php
 require_once "../Variables.php";
 require_once "../models/Authentication.php";
+require_once "../models/User.php";
 
-if (Authentication::isAuth()['auth']) Session::extendValidity();
+if (Authentication::isAuth()['auth']){
+    if(!User::isComplete($_SESSION[Session::ID])) header('Location: /complete_data');
+    Session::extendValidity();
+}
 
 if($_SERVER['REQUEST_METHOD'] == "POST" || !isset($_GET['search'])) {
     header('Location: /');

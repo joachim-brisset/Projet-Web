@@ -151,7 +151,7 @@
                     }
                 }
                 if ($i == 9) {
-                    if (!preg_match("/^[0-9]$/", $_POST[$name_form[$i]])) {
+                    if (!preg_match("/^[0-9]*$/", $_POST[$name_form[$i]])) {
                         $_SESSION['data_error'][$i] = " Attention, uniquement des chiffres.";
                     }
                 }

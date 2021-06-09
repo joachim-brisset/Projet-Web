@@ -10,7 +10,8 @@ require_once "../models/Roles.php";
 require_once "../models/News.php";
 
 Session::appendToHistory();
-if (!Authentication::isAuth()['auth']) header('Location: /sign-in') or die;
+if (!Authentication::isAuth()['auth'])header('Location: /sign-in') or die;
+if(!User::isComplete($_SESSION[Session::ID])) header('Location: /complete_data');
 
 Session::extendValidity();
 Authorization::allow(Roles::STAFF);

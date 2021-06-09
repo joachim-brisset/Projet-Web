@@ -3,8 +3,12 @@
 require_once "../models/Event.php";
 require_once "../models/Registration.php";
 require_once "../models/Authentication.php";
+require_once "../models/User.php";
 
-if (Authentication::isAuth()['auth']) Session::extendValidity();
+if (Authentication::isAuth()['auth']){
+    if(!User::isComplete($_SESSION[Session::ID])) header('Location: /complete_data');
+    Session::extendValidity();
+}
 
 $event = Event::withID($_GET['event_id']);
 $registrationNumber = sizeof(Registration::with(['event_id' => $event['id']]));

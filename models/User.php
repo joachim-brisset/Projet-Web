@@ -3,6 +3,15 @@ require_once "../Variables.php";
 
 class User
 {
+
+    static function isComplete($id) {
+        $user = User::withID($id);
+        foreach ($user as $key => $value) {
+            if(!isset($value) || empty($value) || $value == "0000-00-00") return false;
+        }
+        return true;
+    }
+
     /**
      * <p> Check if a user exist with this $id</p>
      * @param $id <p> the id to check </p>

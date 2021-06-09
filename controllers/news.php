@@ -3,9 +3,13 @@
 require_once "../variables.php";
 require_once "../models/Session.php";
 require_once "../models/Authentication.php";
+require_once "../models/User.php";
 
 Session::appendToHistory();
-if (Authentication::isAuth()['auth']) Session::extendValidity();
+if (Authentication::isAuth()['auth']){
+    if(!User::isComplete($_SESSION[Session::ID])) header('Location: /complete_data');
+    Session::extendValidity();
+}
 
 try {
     $bdd = new PDO('mysql:host=localhost;dbname=' . Variables::MYSQL_DATABASE, Variables::MYSQL_USER , Variables::MYSQL_PASS);
