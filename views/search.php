@@ -28,7 +28,7 @@
                     <h2> Users </h2>
                     <div class="card-container">
                         <?php foreach ($userResult as $item): ?>
-                        <a class="card" href="/users/<?= $item['username'] ?>">
+                        <a class="card" href="/result_user/<?= $item['id'] ?>">
                             <img src="/img/user-icon2.svg">
                             <p> <?= $item['username'] ?> </p>
                         </a>

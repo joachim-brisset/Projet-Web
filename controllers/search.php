@@ -32,7 +32,7 @@ if ($searchUser OR $forceSearch) {
     $req->execute();
     $result = $req->fetchAll();
 
-    $req = $db->prepare("SELECT username FROM users WHERE id IN (" . implode(',', array_map(function ($x) { return $x['user_id'];}, $result)) . ") LIMIT 5" );
+    $req = $db->prepare("SELECT * FROM users WHERE id IN (" . implode(',', array_map(function ($x) { return $x['user_id'];}, $result)) . ") LIMIT 5" );
     $req->setFetchMode(PDO::FETCH_ASSOC);
     $req->execute();
     $result = $req->fetchAll();

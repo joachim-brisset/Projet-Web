@@ -16,7 +16,7 @@ RewriteRule ^product$ /controllers/product/ [L,QSA]
 RewriteRule ^product/(.*)$ /controllers/product?product_id=$1 [L,QSA]
 RewriteRule ^news$ /controllers/news [L]
 RewriteRule ^article$ /controllers/article [L]
-RewriteRule ^result_user$ /controllers/result_user [L]
+RewriteRule ^result_user/(.*)$ /controllers/result_user?userid=$1 [L]
 RewriteRule ^cart$ /controllers/cart [L]
 RewriteRule ^search$ /controllers/search/ [L,QSA]
 

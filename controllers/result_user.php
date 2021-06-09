@@ -1,5 +1,6 @@
 <?php
 require_once "../models/Roles.php";
+require_once "../models/Authentication.php";
 
 if (Authentication::isAuth()['auth']) Session::extendValidity();
 
