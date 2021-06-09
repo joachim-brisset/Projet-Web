@@ -56,63 +56,65 @@ if (!$erreur){
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Racing+Sans+One&display=swap" rel="stylesheet">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://fonts.googleapis.com/css2?family=Racing+Sans+One&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="/css/reset.css">
-    <link rel="stylesheet" href="/css/global.css">
-    <link rel="stylesheet" href="/css/header.css">
+        <link rel="stylesheet" href="/css/reset.css">
+        <link rel="stylesheet" href="/css/global.css">
+        <link rel="stylesheet" href="/css/header.css">
 
-    <link rel="stylesheet" href="/css/styleCart.css">
+        <link rel="stylesheet" href="/css/styleCart.css">
 
-    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
-    <script src="/js/header-app.js"></script>
+        <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+        <script src="/js/header-app.js"></script>
 
-    <title>Basket Passion | Products</title>
-</head>
-<body class="scrollable">
-<?php include "components/header.php"?>
+        <title>Basket Passion | Products</title>
+    </head>
+    <body class="scrollable">
+    <?php include "components/header.php"?>
+        <main>
+            <div class="panier">
+            <?php
+                if (creationPanier()):
+                   $nbArticles=count($_SESSION['panier']['CodeProduit']);
+                   if ($nbArticles <= 0): ?>
+                        <p>Votre panier est vide </p>
+                   <?php else:
+                        for ($i=0 ;$i < $nbArticles ; $i++): ?>
+                            <div class="cart-item">
+                                <p><?= Product::withID($_SESSION['panier']['CodeProduit'][$i])['name'] ?></p>
+                                <form class="productForm">
+                                    <input hidden type="number" name="productId" value="<?= htmlspecialchars($_SESSION['panier']['CodeProduit'][$i]) ?>">
+                                    <input type="number" name="qte" value=<?=$_SESSION['panier']['NbProduit'][$i]?>>
+                                    <input type="submit" value="edit">
+                                </form>
 
-<div class="panier">
-<?php
-    if (creationPanier()):
-       $nbArticles=count($_SESSION['panier']['CodeProduit']);
-       if ($nbArticles <= 0): ?>
-            <p>Votre panier est vide </p>
-       <?php else:
-            for ($i=0 ;$i < $nbArticles ; $i++): ?>
-                <div class="cart-item">
-                    <p><?= Product::withID($_SESSION['panier']['CodeProduit'][$i])['name'] ?></p>
-                    <form class="productForm">
-                        <input hidden type="number" name="productId" value="<?= htmlspecialchars($_SESSION['panier']['CodeProduit'][$i]) ?>">
-                        <input type="number" name="qte" value=<?=$_SESSION['panier']['NbProduit'][$i]?>>
-                        <input type="submit" value="edit">
-                    </form>
+                                <p><?=htmlspecialchars($_SESSION['panier']['prixProduit'][$i]) ?> € </p>
+                                <a href="<?=htmlspecialchars("cart?action=suppression&l=".rawurlencode($_SESSION['panier']['CodeProduit'][$i]))?> ">Supprimer article</a>
+                            </div>
+                        <?php endfor; ?>
 
-                    <p><?=htmlspecialchars($_SESSION['panier']['prixProduit'][$i]) ?> € </p>
-                    <a href="<?=htmlspecialchars("cart?action=suppression&l=".rawurlencode($_SESSION['panier']['CodeProduit'][$i]))?> ">Supprimer article</a>
-                </div>
-            <?php endfor; ?>
+                      <p>Total : <span id='CartAmount'> <?=MontantGlobal()?></span></p>
+                      <input type="submit" value="Rafraichir"/>
+                      <input type="hidden" name="action" value="refresh"/>
+                   <?php endif;
+                endif;
 
-          <p>Total : <span id='CartAmount'> <?=MontantGlobal()?></span></p>
-          <input type="submit" value="Rafraichir"/>
-          <input type="hidden" name="action" value="refresh"/>
-       <?php endif;
-    endif;
+                /*
+                $CodeProduit=1;
+                $NbProduit=1;
+                $prixProduit=50;
+                */
 
-    /*
-    $CodeProduit=1;
-    $NbProduit=1;
-    $prixProduit=50;
-    */
+                ?>
+                <button id="clearCart-but"> Vider le panier</button>
 
-    ?>
-    <button id="clearCart-but"> Vider le panier</button>
-    
-    </div>
-</body>
-<script defer src="/js/supprimerPanier.js"></script>
-<script defer src="/js/modifierQtePanier.js"></script>
+            </div>
+        </main>
+    </body>
+    <script defer src="/js/supprimerPanier.js"></script>
+    <script defer src="/js/modifierQtePanier.js"></script>
+</html>

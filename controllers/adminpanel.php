@@ -15,6 +15,12 @@ Session::extendValidity();
 Authorization::allow(Roles::STAFF);
 
 switch($_GET['page']) {
+    case "users":
+        $allUsers = User::all();
+
+        $mainContent = file_get_contents("../views/components/adminpanel/users.php");
+        break;
+
     case "events":
         $eventInProgress = Event::inProgress();
         $eventUpComing = Event::soon();

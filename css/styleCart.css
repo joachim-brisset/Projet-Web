@@ -1,4 +1,11 @@
+main {
+    padding-top: var(--header-height);
+    height: 100vh;
+}
+
 .panier{
+    position: relative;
+    top: 20px;
     width: 500px;
     height: 800px;
     margin: auto;
