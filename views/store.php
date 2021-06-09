@@ -1,3 +1,7 @@
+<?php
+    require_once "../models/Product.php";
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
     <head>
@@ -19,6 +23,9 @@
         <?php include '../controllers/header.php' ?>
 
         <main>
+            <?php
+                $allProducts = Product::all();
+            ?>
             <a href="/cart">
                 <ion-icon name="cart-outline" class="iconCart" href="cart.php"></ion-icon>
             </a>
@@ -43,8 +50,8 @@
                             <input type="hidden" name="produit" value="Hoodie genese" >
                         </form>
                         <div class="product-details">
-                            <p class="product-name">Balle spalding NBA</p>
-                            <p class="product-price">50,00€</p>
+                            <p class="product-name"><?php echo $allProducts[1]['name'];?></p>
+                            <p class="product-price"><?php echo $allProducts[1]['price'];?>€</p>
                         </div>
                     </a>
 
@@ -53,8 +60,8 @@
                             <input type="hidden" name="produit" value="Hoodie genese" >
                         </form>
                         <div class="product-details">
-                            <p class="product-name">Panier Chinatown Market</p>
-                            <p class="product-price">70,00€</p>
+                            <p class="product-name"><?php echo $allProducts[2]['name'];?></p>
+                            <p class="product-price"><?php echo $allProducts[2]['price'];?>€</p>
                         </div>
                     </a>
                 </div>

@@ -1,3 +1,7 @@
+<?php
+    require_once "../models/Product.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,6 +27,9 @@
     </head>
 
     <main>
+        <?php
+            $allProducts = Product::all();
+        ?>
         <a href="/cart">
             <ion-icon name="cart-outline" class="iconCart" href="cart.php"></ion-icon>
         </a>
@@ -52,25 +59,25 @@
                     <?php
                             $produit = $_GET['product'];
                             if($produit=='Supraw'){
-                                echo '<h1> Ballon de basket "Supraw"</h1><br>
-                                <p class="price">400,00€</p>';
+                                echo '<h1>'.$allProducts[0]['name'].'</h1><br>
+                                <p class="price">'.$allProducts[0]['price'].'€</p>';
                                 $CodeProduit=1;
                                 $NbProduit=1;
-                                $prixProduit=400;
+                                $prixProduit=$allProducts[0]['price'];
                             }
                             if($produit=='Lakers'){
-                                echo '<h1> Ballon de basket "Lakers"</h1><br>
-                                <p class="price">50,00€</p>';
+                                echo '<h1>'.$allProducts[1]['name'].'</h1><br>
+                                <p class="price">'.$allProducts[1]['price'].'€</p>';
                                 $CodeProduit=2;
                                 $NbProduit=1;
-                                $prixProduit=50;
+                                $prixProduit=$allProducts[1]['price'];
                             }
                             if($produit=='Panier'){
-                                echo '<h1> Panier Chinatown market</h1><br>
-                                <p class="price">70,00€</p>';
+                                echo '<h1>'.$allProducts[2]['name'].'</h1><br>
+                                <p class="price">'.$allProducts[2]['price'].'€</p>';
                                 $CodeProduit=3;
                                 $NbProduit=1;
-                                $prixProduit=70;
+                                $prixProduit=$allProducts[2]['price'];
                             }
 
                         ?>
@@ -93,25 +100,13 @@
                     <?php
                             $produit = $_GET['product'];
                             if($produit=='Supraw'){
-                                echo '<u>Descrption du produit :</u>
-                                <li>Desing unique et coloré, produit en quantité limité</li>
-                                <li>Nombres de couches : 3</li>
-                                <li>Vessie : Butyle parfaite tenue au gonflage</li>
-                                <li>Carcasse : Nylon renforcé, montage pro dynamique</li>';
+                                echo '<u>Descrption du produit :</u><br>'.$allProducts[0]['description'];
                             }
                             if($produit=='Lakers'){
-                                echo '<u>Descrption du produit :</u>
-                                <li>Cuir naturel haut de gamme</li>
-                                <li>Nombres de couches : 5</li>
-                                <li>Vessie : Butyle parfaite tenue au gonflage</li>
-                                <li>Carcasse : Nylon renforcé, montage pro dynamique</li>';
+                                echo '<u>Descrption du produit :</u><br>'.$allProducts[1]['description'];
                             }
                             if($produit=='Panier'){
-                                echo '<u>Descrption du produit :</u>
-                                <li>Résiste aux intempéries</li>
-                                <li>Desing unique, produit en quantité limité</li>
-                                <li>Attache filet : Tube ou Queue de cochon </li>
-                                <li>Arceau : Spécial Dunk</li>';
+                                echo '<u>Descrption du produit :</u><br>'.$allProducts[2]['description'];
                             }
 
                         ?>
