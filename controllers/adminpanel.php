@@ -49,6 +49,7 @@ switch($_GET['page']) {
         $allUsers = User::all();
         $membre_price = Roles::withRole(Roles::MEMBER)['price'];
         $staff_price = Roles::withRole(Roles::STAFF)['price'];
+        $staff2_price = Roles::withRole(Roles::STAFF2)['price'];
 
         $mainContent = file_get_contents("../views/components/adminpanel/budget.php");
         break;

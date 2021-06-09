@@ -180,8 +180,8 @@ $api = [
         elseif ($_GET["user_role_id"] == "staff") {
             $params['role_id'] = 2;
         }
-        elseif ($_GET["user_role_id"] == "aucun rôle") {
-            $params['role_id'] = NULL;
+        elseif ($_GET["user_role_id"] == "staff2") {
+            $params['role_id'] = 3;
         }
         $params['gender'] = $_GET['user_gender'];
         $params['jobs'] = $_GET['user_jobs'];
@@ -217,6 +217,9 @@ $api = [
             }
             elseif ($_GET["user_role_id"] == "staff") {
                 $params['role_id'] = 2;
+            }
+            elseif ($_GET["user_role_id"] == "staff2") {
+                $params['role_id'] = 3;
             }
         }
         if (isset($_GET["user_gender"])) $params['gender'] = $_GET['user_gender'];

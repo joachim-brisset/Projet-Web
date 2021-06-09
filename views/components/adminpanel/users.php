@@ -36,6 +36,7 @@
                     <input name="user_lastname" value="<?= $user['lastname'] ?>">
                     <select name="user_role_id">
                         <option value="staff" <?php if (isset($user['role_id']) && $user['role_id'] == 2) { echo 'selected'; }?>>staff</option>
+                        <option value="staff" <?php if (isset($user['role_id']) && $user['role_id'] == 3) { echo 'selected'; }?>>staff2</option>
                         <option value="membre" <?php if (isset($user['role_id']) && $user['role_id'] == 1) { echo 'selected'; }?>>membre</option>
                     </select>
                     <select name="user_gender">
@@ -80,14 +81,15 @@
             <input disabled name="user_country" value="Pays">
         </div>
         <form class="ajax-form">
-            <input name="user_username">
+            <input name="user_username" required>
             <input name="user_mail" required>
             <input name="user_password" required type="password">
             <input name="user_firstname">
             <input name="user_lastname">
             <select name="user_role_id">
                 <option value="staff">staff</option>
-                <option value="member">membre</option>
+                <option value="staff2">staff2</option>
+                <option value="membre">membre</option>
             </select>
             <select name="user_gender">
                 <option value="Homme">Homme</option>

@@ -25,6 +25,7 @@
             <br><p>Profits sur les inscriptions :</p>
             <?php 
                 $staff = 0;
+                $staff2 = 0;
                 $membre = 0;
                 foreach ($allUsers as $user) {
                     if ($user['role_id'] == 1) {
@@ -33,10 +34,14 @@
                     elseif ($user['role_id'] == 2) {
                         $staff += 1;
                     }
+                    elseif ($user['role_id'] == 3) {
+                        $staff2 += 1;
+                    }
                 }
                 echo $membre." simple(s) membre(s) : ".($membre_price*$membre)."€<br>";
                 echo $staff." membre(s) du staff : ".($staff_price*$staff)."€<br>";
-                $all_profits += (($membre_price*$membre)+($staff_price*$staff));
+                echo $staff2." membre(s) du staff ayant accès à la trésorerie : ".($staff2_price*$staff2)."€<br>";
+                $all_profits += (($membre_price*$membre)+($staff_price*$staff)+($staff2_price*$staff2));
             ?>
             <br><p>Total des recettes sur la période :</p>
             <?php echo $all_profits."€"; ?>
