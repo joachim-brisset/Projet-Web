@@ -6,9 +6,6 @@ require_once "Session.php";
 
 class Authorization {
 
-    const MEMBER = 'membre'; /** @var string <p> represent member permission</p> */
-    const STAFF = 'staff'; /** @var string <p> represent staff permission</p> */
-
     /**
      * <p> Allow certain user </p>
      * @param String $permission <p> a constant from authorization</p>

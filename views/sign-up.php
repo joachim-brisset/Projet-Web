@@ -16,13 +16,13 @@
     </head>
 
     <body>
-        <?php require "../controllers/header.php"?>
+        <?php include "../controllers/header.php"?>
         <main>
             <?php if(isset($msg) and $msg): ?>
                 <div id="message"> <p><?= $msg ?></p> </div>
             <?php endif;?>
             <form method="post">
-                <h1>INSCRIPTION</h1>
+                <h1>inscription</h1>
 
                 <label for="pseudo">Mail</label>
                 <input type="text" name="pseudo" id="pseudo" placeholder="Entrer mail" <?php if (isset($_POST['pseudo'])) echo 'value="'. $_POST['pseudo'] .'"'; ?> >

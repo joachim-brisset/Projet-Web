@@ -1,7 +1,3 @@
-<?php
-include "../controllers/me_sql.php";
-?>
-
 <!DOCTYPE html>
 <html lang="fr">
     <head>
@@ -13,18 +9,14 @@ include "../controllers/me_sql.php";
         <link rel="stylesheet" href="/css/footer.css">
         <link rel="stylesheet" href="/css/Scrollbar.css">
         <link rel="stylesheet" href="/css/me.css">
+        <!--<link rel="stylesheet" href="css/home.css">-->
         <script src="/js/header-app.js"></script>
         <link href="https://fonts.googleapis.com/css2?family=Racing+Sans+One&display=swap" rel="stylesheet">
         <title> Basket Passion | My account </title>
     </head>
 
     <body>
-    <?php require "../controllers/header.php" ?>
-    <?php
-        $mail = get_mail();
-        $user = get_infos();
-        $role = get_role();
-    ?>
+        <?php include "../controllers/header.php" ?>
         <main>
             <div id="presentation">
                 <div id="data">
@@ -85,8 +77,7 @@ include "../controllers/me_sql.php";
             </div>
                 
         </main>
-    <?php include '../views/components/footer.html' ?>
+        <?php include '../views/components/footer.html' ?>
     </body>
     <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
-    <link rel="stylesheet" href="css/home.css">
 </html>

@@ -17,7 +17,7 @@
         <title> Basket Passion | Not found </title>
     </head>
     <body>
-        <?php require "../controllers/header.php" ?>
+        <?php include "../controllers/header.php" ?>
         <main>
             <h1> 404 | Page non trouvé </h1>
             <a href="/home"> <p> Revenir à la page d'Accueill </p> </a>
@@ -25,7 +25,7 @@
             <div id="ball"></div>
             <div id="floor"> </div>
         </main>
-        <?php require "components/footer.html" ?>
+        <?php include "components/footer.html" ?>
     </body>
 
     <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>

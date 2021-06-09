@@ -4,6 +4,11 @@ require_once "../variables.php";
 
 class Registration {
 
+    /**
+     * <p> Get all registration that match th $where
+     * @param array $where <p> associative array of key and value the match. All keys must be table column </p>
+     * @return array <p> Return an array of associative array of all information about registration</p>
+     */
     public static function with(array $where) {
         $db = new PDO('mysql:host=localhost;dbname=' . Variables::MYSQL_DATABASE, Variables::MYSQL_USER , Variables::MYSQL_PASS);
 
@@ -23,6 +28,12 @@ class Registration {
         return $req->fetchAll();
     }
 
+    /**
+     * <p> Unregister a user from a event</p>
+     * @param int $event_id <p> id of the user to unregister </p>
+     * @param int $user_id <p> id of the event to unregister the user </p>
+     * @return bool <p> Return true on success and false otherwise
+     */
     public static function unregister(int $event_id,int $user_id)
     {
         $db = new PDO('mysql:host=localhost;dbname=' . Variables::MYSQL_DATABASE, Variables::MYSQL_USER , Variables::MYSQL_PASS);
@@ -36,6 +47,12 @@ class Registration {
         return $req->execute();
     }
 
+    /**
+     * <p> Register a user from a event</p>
+     * @param int $event_id <p> id of the user to register </p>
+     * @param int $user_id <p> id of the event to register the user </p>
+     * @return bool <p> Return true on success and false otherwise
+     */
     public static function register($event_id, $user_id)
     {
         $db = new PDO('mysql:host=localhost;dbname=' . Variables::MYSQL_DATABASE, Variables::MYSQL_USER , Variables::MYSQL_PASS);

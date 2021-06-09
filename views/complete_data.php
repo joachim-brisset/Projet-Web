@@ -15,24 +15,9 @@
         <title> Basket Passion | Compelete my data </title>
     </head>
     <body>
-    <?php require "../controllers/header.php"?>
+    <?php include "../controllers/header.php"?>
         <main>
-            <?php
-                include "../controllers/me_sql.php";
 
-                $_SESSION['data_error'] = ["", "", "", "", "", "", "", "", "", ""];
-
-                if (isset($_POST['confirm'])) {
-                    control_data();
-                    if ($_SESSION['data_error'] == ["", "", "", "", "", "", "", "", "", ""]){
-                        complete_data();
-                        header("Location: /me");
-                    }
-                }
-
-                $mail = get_mail();
-                $user = get_infos();
-            ?>
             <form method="post">
                 <h1>Mes informations</h1>
     

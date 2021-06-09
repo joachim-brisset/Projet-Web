@@ -1,10 +1,3 @@
-<?php
-    include "../controllers/me_sql.php"; 
-    if (isset($_POST['current_mail'])) {
-        $msg = change_email();
-    }
-?>
-
 <!DOCTYPE html>
 <html lang="fr">
     <head>
@@ -19,12 +12,11 @@
         <link rel="stylesheet" href="/css/sign-up.css">
 
         <script src="/js/header-app.js"></script>
-
         <title> Basket Passion | Change mail</title>
     </head>
 
     <body>
-        <?php require "../controllers/header.php"?>
+        <?php include "../controllers/header.php"?>
         <main>
             <?php if(isset($msg) and $msg): ?>
                 <div id="message"> <p><?= $msg ?></p> </div>

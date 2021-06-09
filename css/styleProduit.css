@@ -3,10 +3,6 @@
 @import "/css/footer.css";
 @import "/css/Scrollbar.css";
 
-.produit {
-    width: auto;
-}
-
 .infos {
     top: 20%;
     left: 50%;
@@ -19,7 +15,7 @@ h1 {
     font-size: 1.75vw;
 }
 
-p {
+#produit p {
     color: whitesmoke;
     font-family: "Gill Sans", sans-serif;
     font-size: 1vw;

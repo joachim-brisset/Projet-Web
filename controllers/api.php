@@ -5,7 +5,8 @@ require_once "../models/Authorization.php";
 require_once "../models/Authentication.php";
 require_once "../models/Registration.php";
 require_once "../models/Product.php";
-require_once "../views/fonctions-panier.php";
+require_once "../models/Roles.php";
+require_once "../models/fonctions-panier.php";
 
 
 /* TODO: checks var types */
@@ -33,7 +34,7 @@ $api = [
         if (!isset($_GET['event_id'])) return ['success' => false, 'cause' => 'no user_id parameter'];
 
         if (isset($_GET['user_id'])) {
-            Authorization::allow(Authorization::STAFF, function () {die;});
+            Authorization::allow(Roles::STAFF, function () {die;});
             return ['success' => Registration::unregister($_GET['event_id'], $_GET['user_id']), 'cause' => 'sql'];
         } else {
             return ['success' => Registration::unregister($_GET['event_id'], $_SESSION[Session::ID]), 'cause' => 'sql'];
@@ -45,7 +46,7 @@ $api = [
         if (!isset($_GET['event_id'])) return ['success' => false, 'cause' => 'no user_id parameter'];
 
         if (isset($_GET['user_id'])) {
-            Authorization::allow(Authorization::STAFF, function () {die;});
+            Authorization::allow(Roles::STAFF, function () {die;});
             return ['success' => Registration::register($_GET['event_id'], $_GET['user_id']), 'cause' => 'sql'];
         } else {
             if (Event::withID($_GET['event_id'])['place_number'] > sizeof(Registration::with(['event_id' => $_GET['event_id']]))) {
@@ -82,7 +83,7 @@ $api = [
 
     'addEvent' => function() {
         if (!Authentication::isAuth()['auth']) return ['success' => false, "cause" => "not connected"];
-        Authorization::allow(Authorization::STAFF, function() {die;});
+        Authorization::allow(Roles::STAFF, function() {die;});
 
         if (!isset($_GET['event_name']) || !isset($_GET['event_desc']) || !isset($_GET['event_place']) || !isset($_GET['event_start']) || !isset($_GET['event_end']) || !isset($_GET['event_price']) || !isset($_GET['event_place_number'])) return ['success' => false, 'cause' => 'not enough arguments'];
 
@@ -107,7 +108,7 @@ $api = [
     'editEvent' => function() {
 
         if (!Authentication::isAuth()['auth']) return ['success' => false, "cause" => "not connected"];
-        Authorization::allow(Authorization::STAFF, function() {die;});
+        Authorization::allow(Roles::STAFF, function() {die;});
 
         if(!isset($_GET['event_id']) || !(isset($_GET['event_name']) || isset($_GET['event_desc']) || isset($_GET['event_place']) || isset($_GET['event_start']) || isset($_GET['event_end'])) ) return ['success' => false, 'cause' => 'not enough arguments'];
 
@@ -126,7 +127,7 @@ $api = [
 
     'deleteEvent' => function() {
         if (!Authentication::isAuth()['auth']) return ['success' => false, "cause" => "not connected"];
-        Authorization::allow(Authorization::STAFF, function() {die;});
+        Authorization::allow(Roles::STAFF, function() {die;});
 
         if(!isset($_GET['event_id'])) return ['success' => false, 'cause' => 'no event_id'];
         return ['success' => Event::delete($_GET['event_id']), 'cause' => 'sql'];
@@ -135,7 +136,7 @@ $api = [
 
     'addProduct' => function() {
         if (!Authentication::isAuth()['auth']) return ['success' => false, "cause" => "not connected"];
-        Authorization::allow(Authorization::STAFF, function() {die;});
+        Authorization::allow(Roles::STAFF, function() {die;});
 
         if(!isset($_GET['product_name']) || !isset($_GET['product_price']) || !isset($_GET['product_stocks']) ||!isset($_GET['product_initial_stock'])) return ['success' => false, 'cause' => "missing parameters"];
 
@@ -155,7 +156,7 @@ $api = [
 
     'editProduct' => function() {
         if (!Authentication::isAuth()['auth']) return ['success' => false, "cause" => "not connected"];
-        Authorization::allow(Authorization::STAFF, function() {die;});
+        Authorization::allow(Roles::STAFF, function() {die;});
 
         if (!isset($_GET['product_id']) || !(isset($_GET['product_name']) || isset($_GET['product_price']) ||isset($_GET['product_stocks']) || isset($_GET['product_initial_stock']))) return ['success' => false, 'cause' => 'missing parameters'];
 
@@ -170,7 +171,7 @@ $api = [
 
     'deleteProduct' => function() {
         if (!Authentication::isAuth()['auth']) return ['success' => false, "cause" => "not connected"];
-        Authorization::allow(Authorization::STAFF, function() {die;});
+        Authorization::allow(Roles::STAFF, function() {die;});
 
         if(!isset($_GET['product_id'])) return ['success' => false, 'cause' => 'no event_id'];
         return ['success' => Product::delete($_GET['product_id']), 'cause' => 'sql'];
@@ -178,7 +179,7 @@ $api = [
     
     'addUser' => function() {
         if (!Authentication::isAuth()['auth']) return ['success' => false, "cause" => "not connected"];
-        Authorization::allow(Authorization::STAFF, function() {die;});
+        Authorization::allow(Roles::STAFF, function() {die;});
 
         if (!isset($_GET['user_username']) || !isset($_GET['user_mail']) || !isset($_GET['user_firstname']) || !isset($_GET['user_lastname']) || !isset($_GET['user_gender']) || !isset($_GET['user_birth_day']) || !isset($_GET['user_jobs']) || !isset($_GET['user_street_number']) || !isset($_GET['user_street']) || !isset($_GET['user_cp']) || !isset($_GET['user_city']) || !isset($_GET['user_country']) || !isset($_GET["user_role_id"]) || !isset($_GET['user_password'])) return ['success' => false, 'cause' => "missing parameters"];
 
@@ -216,7 +217,7 @@ $api = [
 
     'editUser' => function() {
         if (!Authentication::isAuth()['auth']) return ['success' => false, "cause" => "not connected"];
-        Authorization::allow(Authorization::STAFF, function() {die;});
+        Authorization::allow(Roles::STAFF, function() {die;});
 
         if (!isset($_GET['user_id']) || !isset($_GET["user_role_id"]) || !(isset($_GET['user_username']) || isset($_GET['user_mail']) || isset($_GET['user_firstname']) || isset($_GET['user_lastname']) || isset($_GET['user_gender']) || isset($_GET['user_birth_day']) || isset($_GET['user_jobs']) || isset($_GET['user_street_number']) || isset($_GET['user_street']) || isset($_GET['user_cp']) || isset($_GET['user_city']) || isset($_GET['user_country']))) return ['success' => false, 'cause' => "missing parameters"];
         
@@ -247,7 +248,7 @@ $api = [
 
     'deleteUser' => function() {
         if (!Authentication::isAuth()['auth']) return ['success' => false, "cause" => "not connected"];
-        Authorization::allow(Authorization::STAFF, function() {die;});
+        Authorization::allow(Roles::STAFF, function() {die;});
 
         if(!isset($_GET['user_id'])) return ['success' => false, 'cause' => 'no event_id'];
         return ['success' => User::delete($_GET['user_id']), 'cause' => 'sql'];

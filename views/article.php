@@ -17,25 +17,7 @@
     <title>Basket Passion | Actualités</title>
 </head>
 
-<?php
-try
-{
-	$bdd = new PDO('mysql:host=localhost;dbname=assos;charset=utf8', 'root', '');
-}
-catch (Exception $e)
-{
-        die('Erreur : ' . $e->getMessage());
-}
 
-$reponse = $bdd->prepare('SELECT * FROM articles WHERE id=:id   ');
-
-$reponse->bindParam(':id',$_GET["eventid"],PDO::PARAM_INT);
-
-$reponse -> execute();
-
-$item = $reponse -> fetch();
-
-?>
 
 
 <body class="scrollable">

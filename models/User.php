@@ -3,6 +3,11 @@ require_once "../Variables.php";
 
 class User
 {
+    /**
+     * <p> Check if a user exist with this $id</p>
+     * @param $id <p> the id to check </p>
+     * @return bool <p> Return true if exist and false otherwise </p>
+     */
     static function existWithID($id) {
         $db = new PDO('mysql:host=localhost;dbname=' . Variables::MYSQL_DATABASE, Variables::MYSQL_USER , Variables::MYSQL_PASS);
 
@@ -19,6 +24,11 @@ class User
         return true;
     }
 
+    /**
+     * <p> Get all info about the user associated with the $mail if it exist </p>
+     * @param $mail <p> mail to match </p>
+     * @return mixed|null <p> return all info about the user if it exist or null otherwise
+     */
     static function withMail($mail) {
         $db = new PDO('mysql:host=localhost;dbname=' . Variables::MYSQL_DATABASE, Variables::MYSQL_USER , Variables::MYSQL_PASS);
 
@@ -35,6 +45,12 @@ class User
         return $result[0];
     }
 
+    /**
+     * <p> Create a new entry in user table of the database </p>
+     * @param $mail <p> mail of the user </p>
+     * @param $password <p> password of the user </p>
+     * @return string <p> Return the user id</p>
+     */
     static function create($mail, $password) {
         $db = new PDO('mysql:host=localhost;dbname=' . Variables::MYSQL_DATABASE, Variables::MYSQL_USER , Variables::MYSQL_PASS);
 
@@ -47,6 +63,11 @@ class User
         return $db->lastInsertId();
     }
 
+    /**
+     * <p> Get all info about the user associated to the $id</p>
+     * @param int $id <p> the to return user id </p>
+     * @return mixed <p> Associative array about the user. </>
+     */
     public static function withID($id)
     {
         $db = new PDO('mysql:host=localhost;dbname=' . Variables::MYSQL_DATABASE, Variables::MYSQL_USER , Variables::MYSQL_PASS);
@@ -64,6 +85,10 @@ class User
         return $result[0];
     }
 
+    /**
+     * <p> Get all info about all user. </p>
+     * @return array <p> return a array of associative array about the user </p>
+     */
     public static function all()
     {
         $db = new PDO('mysql:host=localhost;dbname=' . Variables::MYSQL_DATABASE, Variables::MYSQL_USER , Variables::MYSQL_PASS);

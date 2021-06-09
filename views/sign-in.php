@@ -16,7 +16,7 @@
     </head>
     
     <body>
-    <?php require "../controllers/header.php"?>
+        <?php include "../controllers/header.php"?>
         <main>
             <?php if(isset($msg) and $msg): ?>
                 <div id="message"> <p><?= $msg ?></p> </div>

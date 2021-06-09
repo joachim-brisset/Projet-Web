@@ -1,10 +1,3 @@
-<?php
-    include "../controllers/me_sql.php"; 
-    if (isset($_POST['current_password'])) {
-        $msg = change_password();
-    }
-?>
-
 <!DOCTYPE html>
 <html lang="fr">
     <head>
@@ -23,7 +16,7 @@
     </head>
 
     <body>
-        <?php require "../controllers/header.php"?>
+        <?php include "../controllers/header.php"?>
         <main>
             <?php if(isset($msg) and $msg): ?>
                 <div id="message"> <p><?= $msg ?></p> </div>
