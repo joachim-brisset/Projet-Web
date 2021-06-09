@@ -1,0 +1,76 @@
+html {
+    scroll-behavior: smooth;
+    
+}
+body{
+    text-decoration: none;
+    color: white;
+    font-family: 'Racing Sans One', cursive;
+    font-weight: normal;
+    min-height: 100vh;
+}
+
+
+#main{
+    margin-top: var(--header-height);
+
+    min-height: 65em;
+    
+    background:rgba(255,255,255,0.025) url(/img/background.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-bottom: 40px;
+    
+}
+
+h1, h2{
+    font-weight: normal;
+}
+
+#main h1{
+    text-align: center;
+    font-size: 70px;
+}
+
+.annonces{
+    padding-top:50px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    
+    
+}
+
+h2{
+    font-size: 50px;
+    padding-bottom: 50px;
+    text-align: center;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+.annonce  p{
+    /* width: 60%; */
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-bottom: 20%;
+    text-align: center;
+    font-size: 270%;
+    word-wrap: break-word;
+    hyphens: auto;
+    
+}
+.annonce{
+    position: relative;
+    width: 40%;
+    height: 600px;
+    background-color:#501149 ;
+    /* background-size: 500px 300px; */
+    border-radius: 30px;
+    min-width: 250px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}

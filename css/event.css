@@ -1,98 +1,71 @@
-html {
-    scroll-behavior: smooth;
-    
-}
-body{
-    text-decoration: none;
-    color: white;
-    font-family: 'Racing Sans One', cursive;
-    font-weight: normal;
-    min-height: 100vh;
-}
-
-
-#main{
+main {
+    position: relative;
     margin-top: var(--header-height);
 
-    min-height: 65em;
-    
+    height: calc(100vh - var(--header-height));
+    width: 100%;
+
+    font-family: Racing Sans One,Arial, Helvetica, sans-serif;
     background:rgba(255,255,255,0.025) url(/img/background.svg);
     background-repeat: no-repeat;
     background-size: cover;
-    padding-bottom: 40px;
-    
 }
 
-h1, h2{
-    font-weight: normal;
+#event {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-template-rows: 1fr 3fr;
+    height: 80%;
+    width: 80%;
+
+    margin: 30px auto 0;
+
+    grid-gap: 20px;
 }
 
-#main h1{
-    text-align: center;
-    font-size: 70px;
-}
 
-.annonces{
-    padding-top:50px;
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    
-    
+#event-header {
+    grid-column: 1/3;
+    grid-row: 1/2;
 }
-
-h2{
-    font-size: 50px;
-    padding-bottom: 50px;
-    text-align: center;
-    padding-left: 10%;
-    padding-right: 10%;
-}
-
-.annonce > p{
-    /* width: 60%; */
-    padding-left: 10%;
-    padding-right: 10%;
-    padding-bottom: 20%;
-    text-align: center;
-    font-size: 270%;
-    word-wrap: break-word;
-    hyphens: auto;
-    
-}
-.annonce{
+#event-header > .title {
     position: relative;
-    width: 40%;
-    height: 600px;
-    background-color:#501149 ;
-    /* background-size: 500px 300px; */
-    border-radius: 30px;
-    min-width: 250px;
-    margin-left: 20px;
-    margin-right: 20px;
-    margin-top: 20px;
-    overflow-y: scroll;
-    overflow-x: hidden;
+    top: 15%;
+    text-align: center;
+}
+
+#event .container {
+    position: relative;
+    background-color:rgba(0,0,0, 0.2);
+    border-radius: 20px;
+    padding: 20px;
+}
+#event-body{
+    font-size: 1.5em;
+    grid-column: 1/2;
+    grid-row: 2/3;
 }
 
 .ajax-form {
-    margin: auto;
-    width: 40%;
-    height: 2em;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
 }
+
 .ajax-form > input[type=submit] {
-    width: 100%;
     height: 100%;
     font-size: 1.2em;
     color: white;
     border-radius: 1em;
     background: orange;
     border: none;
+
+    padding: 5px 20px;
 }
 .ajax-form > input[type=submit]:hover:not([disabled]) {
     box-shadow: 0 0 5px 0 darkorange;
     outline: none;
-    zoom: 1.05;
+    transform: scale(1.1);
 }
 .ajax-form > input[type=submit][disabled]{
     background: #626262;

@@ -1,24 +1,15 @@
 <?php
 
-require_once "../models/Registration.php";
-require_once "../models/Session.php";
-require_once "../models/Authentication.php";
 require_once "../models/Event.php";
-require_once "../variables.php";
+require_once "../models/Registration.php";
+require_once "../models/Authentication.php";
 
-Session::appendToHistory();
-if (Authentication::isAuth()['auth']) {
-    Session::extendValidity();
-}
+$event = Event::withID($_GET['event_id']);
+$registrationNumber = sizeof(Registration::with(['event_id' => $event['id']]));
 
+$full = $event['place_number'] != 0 && $event['place_number'] <= $registrationNumber;
+$unregistered = !Authentication::isAuth()['auth'] || empty(Registration::with(['event_id' => $event['id'], 'user_id' => $_SESSION[Session::ID]]));
 
-try {
-    $bdd = new PDO('mysql:host=localhost;dbname=' . Variables::MYSQL_DATABASE, Variables::MYSQL_USER , Variables::MYSQL_PASS);
-} catch (Exception $e) {
-    die('Erreur : ' . $e->getMessage());
-}
-
-$reponse = $bdd->query('SELECT * FROM events');
-
-
+$oneDayEvent = $event['end_at'] == "0000-00-00" || $event['end_at'] == $event['start_at'];
+$seats = !empty($event['place_number']) ? $event['place_number'] : "illimité";
 include "../views/event.php";

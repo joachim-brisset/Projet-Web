@@ -13,40 +13,45 @@
 
         <link rel="stylesheet" href="/css/event.css">
 
-        <script defer src="/js/header-app.js"></script>
-        <script defer src="/js/event_app.js"></script>
-        <title>Basket Passion | Event</title>
+        <script src="/js/header-app.js"></script>
+        <title>Basket Passion | Event </title>
     </head>
-
 
     <body class="scrollable">
         <?php include '../controllers/header.php' ?>
-        <section id="main">
-            <h1>EVENEMENTS</h1>
+        <main>
+            <div id="event">
+                <header id="event-header" class="container">
+                    <h1 class="title"> <?= $event['name'] ?> </h1>
 
-            <div class="annonces">
-            <?php while($donnees = $reponse->fetch()): ?>
-                <div class="scrollable annonce">
-                    <h2><?php echo $donnees["name"] ?></h2>
-                    <p><?php echo $donnees["description"]?> <br>
-                        Date : <?php echo $donnees["start_at"] ?><?php if (!empty($donnees["end_at"]) && $donnees['end_at'] != "0000-00-00"){echo " au " ,$donnees["end_at"];} ?> <br>
-                        Lieu : <?php echo $donnees["place"] ?> <br>
-                        Places : <?php if ($limited = !empty($donnees["place_number"])){echo $donnees["place_number"] ;}else {echo "illimité";}
-                        if (!empty($donnees['price'])) { echo "<br>Prix : ".$donnees['price']."€"; }?>
-                    </p>
-
-                <?php if ($limited):
-                    $full = Event::withID($donnees['id'])['place_number'] <= sizeof(Registration::with(['event_id' => $donnees['id']]));
-                    $unregistered = !Authentication::isAuth()['auth'] || empty(Registration::with(['event_id' => $donnees['id'], 'user_id' => $_SESSION[Session::ID]]))?>
                     <form class="ajax-form <?= $unregistered ? 'register' : 'unregister'?>">
-                        <input hidden name="event_id" value="<?= $donnees['id']?>">
+                        <input hidden name="event_id" value="<?= $event['id'] ?>">
                         <input <?= ($full && $unregistered ? "disabled" : "") ?> type="submit" value="<?= $unregistered ? ($full ? "Full" : "S'inscrire") : "Se desinscrire"  ?>">
                     </form>
-                <?php endif; ?>
-                </div>
-            <?php endwhile; ?>
+                </header>
+
+                <section id="event-body" class="container">
+                    <p> <?= $event['description'] ?> </p>
+                </section>
+                <section id="event-data" class="container">
+                    <?php if($oneDayEvent): ?>
+                        <h2> Date: <span class="date" id="start"> <?= $event['start_at'] ?></span></h2>
+                    <?php else: ?>
+                        <h2> Date début: <span class="date" id="start"> <?= $event['start_at'] ?></span></h2>
+                        <h2> Date fin: <span class="date" id="end"><?= $event['end_at']?></span> </h2>
+                    <?php endif; ?>
+                    <br>
+                    <h2> Lieu: <span id="place"> <?= $event['place'] ?> </span></h2>
+                    <h2> Nombre de place:
+                    <?php if(is_numeric($seats)): ?>
+                        <span id="free-seats"><?= $seats - $registrationNumber  ?> </span> / <span id="max-seats"><?= $seats  ?> </span></h2>
+                    <?php else: ?>
+                        <span id="free-seats"> <?= $seats?> </span>
+                    <?php endif; ?>
+                    <h2> Prix: <span id="price"><?= $event['price'] ?> </span></h2>
+                </section>
             </div>
-        </section>
+        </main>
     </body>
-    <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+    <script defer src="/js/event_app.js"></script>
 </html>

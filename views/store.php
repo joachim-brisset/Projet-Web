@@ -33,20 +33,20 @@
             <div class="list-product">
                 <div class="first-row">
                     <a class="product tshirt-orchide"  onclick="document.getElementById('premierproduit').submit()">
-                        <form method="post" action="/product?product=Supraw" id="premierproduit" class="inline">
+                        <form method="post" action="/product?product_id=1" id="premierproduit" class="inline">
                             <input type="hidden" name="produit" value="Tshirt-orchide">
                         </form>
                     </a>
 
                     <div class="title-mid">
                         <p>nouvelle balle dispo réalisée par SUPRAW</p>
-                        <a  href="/product?product=Supraw" onclick="document.getElementById('premierproduit').submit()">acheter</a>
+                        <a  href="/product?product_id=1" onclick="document.getElementById('premierproduit').submit()">acheter</a>
                     </div>
                 </div>
 
                 <div class="second-row">
                     <a class="product hoodie" href="#" onclick="document.getElementById('troisièmeproduit').submit()">
-                        <form method="post" action="/product?product=Lakers" id="troisièmeproduit" class="inline">
+                        <form method="post" action="/product?product_id=2" id="troisièmeproduit" class="inline">
                             <input type="hidden" name="produit" value="Hoodie genese" >
                         </form>
                         <div class="product-details">
@@ -56,7 +56,7 @@
                     </a>
 
                     <a class="product secret" href="#" onclick="document.getElementById('produitsecret').submit()">
-                        <form method="post" action="/product?product=Panier" id="produitsecret" class="inline">
+                        <form method="post" action="/product?product_id=3" id="produitsecret" class="inline">
                             <input type="hidden" name="produit" value="Hoodie genese" >
                         </form>
                         <div class="product-details">

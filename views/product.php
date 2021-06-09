@@ -57,22 +57,22 @@
                 </div>
                 <div class="infos">
                     <?php
-                            $produit = $_GET['product'];
-                            if($produit=='Supraw'){
+                            $produit = $_GET['product_id'];
+                            if($produit=='1'){
                                 echo '<h1>'.$allProducts[0]['name'].'</h1><br>
                                 <p class="price">'.$allProducts[0]['price'].'€</p>';
                                 $CodeProduit=1;
                                 $NbProduit=1;
                                 $prixProduit=$allProducts[0]['price'];
                             }
-                            if($produit=='Lakers'){
+                            if($produit=='2'){
                                 echo '<h1>'.$allProducts[1]['name'].'</h1><br>
                                 <p class="price">'.$allProducts[1]['price'].'€</p>';
                                 $CodeProduit=2;
                                 $NbProduit=1;
                                 $prixProduit=$allProducts[1]['price'];
                             }
-                            if($produit=='Panier'){
+                            if($produit=='3'){
                                 echo '<h1>'.$allProducts[2]['name'].'</h1><br>
                                 <p class="price">'.$allProducts[2]['price'].'€</p>';
                                 $CodeProduit=3;
@@ -98,14 +98,14 @@
                 <div class="desciption">
                     <p>
                     <?php
-                            $produit = $_GET['product'];
-                            if($produit=='Supraw'){
+                            $produit = $_GET['product_id'];
+                            if($produit=='1'){
                                 echo '<u>Descrption du produit :</u><br>'.$allProducts[0]['description'];
                             }
-                            if($produit=='Lakers'){
+                            if($produit=='2'){
                                 echo '<u>Descrption du produit :</u><br>'.$allProducts[1]['description'];
                             }
-                            if($produit=='Panier'){
+                            if($produit=='3'){
                                 echo '<u>Descrption du produit :</u><br>'.$allProducts[2]['description'];
                             }
 

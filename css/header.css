@@ -33,7 +33,7 @@ body {
     width: 2em;
 }
 
-header {
+body > header{
     position: absolute;
     height: var(--header-height);
     width: 100%;
