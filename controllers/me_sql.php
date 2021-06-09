@@ -38,7 +38,7 @@
     
         $db = new PDO('mysql:host=localhost;dbname=' . Variables::MYSQL_DATABASE, Variables::MYSQL_USER , Variables::MYSQL_PASS);
 
-        $req = $db -> prepare("SELECT roles.role FROM roles, users WHERE roles.id = users.role AND users.id = :user_id");
+        $req = $db -> prepare("SELECT roles.role FROM roles, users WHERE roles.id = users.role_id AND users.id = :user_id");
         $req->setFetchMode(PDO::FETCH_ASSOC);
         $req -> bindValue( ":user_id", $_SESSION[Session::ID], PDO::PARAM_STR);
 
