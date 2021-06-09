@@ -246,8 +246,8 @@ Authorization::allow(Authorization::STAFF);
     }
     /********************** Users ***********************/
 
-    input[name=user_username], input[name=user_firstname], input[name=user_lastname], input[name=user_mail], input[name=user_gender], input[name=user_birth_day],                   input[name=user_jobs], input[name=user_street_number], input[name=user_street], input[name=user_cp], input[name=user_city], input[name=user_country],                   input[name=user_role_id], select[name=user_role_id], select[name=user_gender] {
-        width: 6.6%;
+    input[name=user_username], input[name=user_firstname], input[name=user_lastname], input[name=user_mail], input[name=user_gender], input[name=user_birth_day],                   input[name=user_jobs], input[name=user_street_number], input[name=user_street], input[name=user_cp], input[name=user_city], input[name=user_country],                   input[name=user_role_id], select[name=user_role_id], select[name=user_gender], input[name=user_password] {
+        width: 6.15%;
     }
             
     #add-user-container {

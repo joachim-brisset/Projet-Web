@@ -180,11 +180,12 @@ $api = [
         if (!Authentication::isAuth()['auth']) return ['success' => false, "cause" => "not connected"];
         Authorization::allow(Authorization::STAFF, function() {die;});
 
-        if (!isset($_GET['user_username']) || !isset($_GET['user_mail']) || !isset($_GET['user_firstname']) || !isset($_GET['user_lastname']) || !isset($_GET['user_gender']) || !isset($_GET['user_birth_day']) || !isset($_GET['user_jobs']) || !isset($_GET['user_street_number']) || !isset($_GET['user_street']) || !isset($_GET['user_cp']) || !isset($_GET['user_city']) || !isset($_GET['user_country']) || !isset($_GET["user_role_id"])) return ['success' => false, 'cause' => "missing parameters"];
+        if (!isset($_GET['user_username']) || !isset($_GET['user_mail']) || !isset($_GET['user_firstname']) || !isset($_GET['user_lastname']) || !isset($_GET['user_gender']) || !isset($_GET['user_birth_day']) || !isset($_GET['user_jobs']) || !isset($_GET['user_street_number']) || !isset($_GET['user_street']) || !isset($_GET['user_cp']) || !isset($_GET['user_city']) || !isset($_GET['user_country']) || !isset($_GET["user_role_id"]) || !isset($_GET['user_password'])) return ['success' => false, 'cause' => "missing parameters"];
 
         $params = [];
         $params['username'] = $_GET['user_username'];
         $params['mail'] = $_GET['user_mail'];
+        $params['password'] = password_hash($_GET['user_password'], PASSWORD_DEFAULT);
         $params['firstname'] = $_GET['user_firstname'];
         $params['lastname'] = $_GET['user_lastname'];
         if ($_GET["user_role_id"] == "membre") {

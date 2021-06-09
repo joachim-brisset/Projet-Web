@@ -7,6 +7,7 @@
         <div class="header">
             <input disabled name="user_username" value="Pseudo">
             <input disabled name="user_mail" value="Mail">
+            <input disabled name="user_password" value="Mot de passe">
             <input disabled name="user_firstname" value="Prénom">
             <input disabled name="user_lastname" value="Nom">
             <input disabled name="user_role_id" value="Rôle">
@@ -30,6 +31,7 @@
                     <input hidden name="user_id" value="<?= $user['id'] ?>">
                     <input name="user_username" value="<?= $user['username'] ?>">
                     <input name="user_mail" value="<?= $user['mail'] ?>">
+                    <input name="user_password" value="<?= $user['password'] ?>" type="password" disabled>
                     <input name="user_firstname" value="<?= $user['firstname'] ?>">
                     <input name="user_lastname" value="<?= $user['lastname'] ?>">
                     <select name="user_role_id">
@@ -64,6 +66,7 @@
         <div class="header">
             <input disabled name="user_username" value="Pseudo">
             <input disabled name="user_mail" value="Mail">
+            <input disabled name="user_password" value="Mot de passe">
             <input disabled name="user_firstname" value="Prénom">
             <input disabled name="user_lastname" value="Nom">
             <input disabled name="user_role_id" value="Rôle">
@@ -78,7 +81,8 @@
         </div>
         <form class="ajax-form">
             <input name="user_username">
-            <input name="user_mail">
+            <input name="user_mail" required>
+            <input name="user_password" required type="password">
             <input name="user_firstname">
             <input name="user_lastname">
             <select name="user_role_id">
