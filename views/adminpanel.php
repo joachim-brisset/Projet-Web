@@ -16,7 +16,7 @@
             <h1><a href="/adminpanel"> Admin Panel </a></h1>
             <ul>
                 <li class="nav-link"><a href="/adminpanel/users"> <p>Utilisateurs </p> <img src="/img/arrow.svg"> </a></li>
-                <li class="nav-link"><a href="/adminpanel/events"> <p>Evenements</p> <img src="/img/arrow.svg"> </a></li>
+                <li class="nav-link"><a href="/adminpanel/events"> <p>Evénements</p> <img src="/img/arrow.svg"> </a></li>
                 <li class="nav-link"><a href="/adminpanel/products"> <p>Produits</p> <img src="/img/arrow.svg"> </a></li>
                 <li class="nav-link"><a href="/adminpanel/news"> <p>Articles</p> <img src="/img/arrow.svg"> </a></li>
                 <li class="nav-link"><a href="/adminpanel/budget"> <p>Gestion du budget</p> <img src="/img/arrow.svg"> </a></li>

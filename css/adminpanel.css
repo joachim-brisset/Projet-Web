@@ -187,8 +187,15 @@ input[type=submit] {
 .user-info > input[type=submit] {
     width: 20px;
 }
-/**************************************************/
+/*********************** Users **********************/
 
+input[name=user_username], input[name=user_mail], input[name=user_password], input[name=user_firstname], input[name=user_lastname], input[name=user_birth_day], input[name=user_jobs], input[name=user_street_number], input[name=user_street], input[name=user_cp], input[name=user_city], input[name=user_country], input[name=user_role_id], input[name=user_gender], select[name=user_gender], select[name=user_role_id] {
+    width: 6.15%;
+}
+        
+#all-users-container {
+    margin-bottom: 20px;
+}
 
 /********************* Products *********************/
 section#product-container {
@@ -207,4 +214,18 @@ input[name=product_name] {
 }
 input[name=product_price], input[name=product_stocks], input[name=product_initial_stock], input.sold {
     width: 5%
+}
+
+/*********************** News **********************/
+
+input[name=news_title], input[name=news_picture_url], input[name=news_corps] {
+    width: 25.75%;
+}
+        
+input[name=news_created_at] {
+    width: 12%;
+}
+        
+#all-news-container {
+    margin-bottom: 20px;
 }

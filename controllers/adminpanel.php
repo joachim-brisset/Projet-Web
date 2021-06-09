@@ -7,6 +7,7 @@ require_once "../models/Product.php";
 require_once "../models/Registration.php";
 require_once "../models/User.php";
 require_once "../models/Roles.php";
+require_once "../models/News.php";
 
 Session::appendToHistory();
 if (!Authentication::isAuth()['auth']) header('Location: /sign-in') or die;
@@ -36,6 +37,8 @@ switch($_GET['page']) {
         break;
 
     case "news":
+        $allNews = News::all();
+    
         $mainContent = file_get_contents("../views/components/adminpanel/news.php");
         break;
 

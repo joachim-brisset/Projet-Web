@@ -6,28 +6,13 @@ require_once "../models/Authentication.php";
 require_once "../models/Registration.php";
 require_once "../models/Product.php";
 require_once "../models/Roles.php";
+require_once "../models/News.php";
 require_once "../models/fonctions-panier.php";
 
 
 /* TODO: checks var types */
 
 $api = [
-    'getNews' => function($params) {
-        $input = json_decode($params, true);
-        if (!$input) return ["error" => "value malformated: not a json"];
-
-        if (isset($input['number'])) {
-            if (is_numeric($input['number'])) {
-                $temp = [];
-                for ($i = 0; $i < $input['number']; $i++) array_push($temp, "test");
-                return $temp;
-            } else return ["error" => "number must be a number"];
-        } else return ["error" => "number must be defined"];
-    },
-
-    'addNews' => function($params) {
-
-    },
 
     'unregisterEvent' => function() {
         if (!Authentication::isAuth()['auth']) return ['success' => false, 'cause' => "not auth"];
@@ -252,6 +237,49 @@ $api = [
 
         if(!isset($_GET['user_id'])) return ['success' => false, 'cause' => 'no event_id'];
         return ['success' => User::delete($_GET['user_id']), 'cause' => 'sql'];
+    },
+    
+    'addNews' => function() {
+        if (!Authentication::isAuth()['auth']) return ['success' => false, "cause" => "not connected"];
+        Authorization::allow(Roles::STAFF, function() {die;});
+
+        if(!isset($_GET['news_title']) || !isset($_GET['news_picture_url']) || !isset($_GET['news_corps']) ||!isset($_GET['news_created_at'])) return ['success' => false, 'cause' => "missing parameters"];
+
+        $params = [];
+        $params['title'] = $_GET['news_title'];
+        $params['picture_url'] = $_GET['news_picture_url'];
+        $params['corps'] = $_GET['news_corps'];
+        $params['created_at'] = $_GET['news_created_at'];
+
+        return [ 'success' => News::add($params), 'cause' => 'sql'];
+    },
+
+    'getNews' => function() {
+        if(!isset($_GET['news_id'])) return ['success' => false, 'cause' => 'no id'];
+        return News::withID($_GET['news_id']);
+    },
+
+    'editNews' => function() {
+        if (!Authentication::isAuth()['auth']) return ['success' => false, "cause" => "not connected"];
+        Authorization::allow(Roles::STAFF, function() {die;});
+
+        if (!isset($_GET['news_id']) || !(isset($_GET['news_title']) || isset($_GET['news_picture_url']) ||isset($_GET['news_created_at']) || isset($_GET['news_corps']))) return ['success' => false, 'cause' => 'missing parameters'];
+
+        $params = [];
+        if (isset($_GET['news_title'])) $params['title'] = $_GET['news_title'];
+        if (isset($_GET['news_picture_url'])) $params['picture_url'] = $_GET['news_picture_url'];
+        if (isset($_GET['news_corps'])) $params['corps'] = $_GET['news_corps'];
+        if (isset($_GET['news_created_at'])) $params['created_at'] = $_GET['news_created_at'];
+
+        return ['success' => News::update(['id' => $_GET["news_id"]], $params), 'cause' => 'sql'];
+    },
+
+    'deleteNews' => function() {
+        if (!Authentication::isAuth()['auth']) return ['success' => false, "cause" => "not connected"];
+        Authorization::allow(Roles::STAFF, function() {die;});
+
+        if(!isset($_GET['news_id'])) return ['success' => false, 'cause' => 'no news_id'];
+        return ['success' => News::delete($_GET['news_id']), 'cause' => 'sql'];
     },
 ];
 
